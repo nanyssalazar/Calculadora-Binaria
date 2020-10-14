@@ -16,20 +16,19 @@ def funcion_conjA():
     string = ui.conjA.text()
     ui.operacion.setText(ui.operacion.text()+'A')
     for i in remove:
-        if i in ui.operacion.text():
+        if i in string:
             string = string.replace(i, '')
     for i in string.split(','):
         setA.add(i)
 
 def funcion_conjB():
-    if 'U' in ui.operacion.text():
-        string = ui.conjB.text()
-        ui.operacion.setText(ui.operacion.text() + 'B')
-        for i in remove:
-            if i in ui.operacion.text():
-                string = string.replace(i, '')
-        for i in string.split(','):
-            setB.add(i)
+    string = ui.conjB.text()
+    ui.operacion.setText(ui.operacion.text() + 'B')
+    for i in remove:
+        if i in string:
+            string = string.replace(i, '')
+    for i in string.split(','):
+        setB.add(i)
         #set_conj1 = setA.union(setB)
         #print(set_conj1)
 
@@ -47,7 +46,7 @@ def funcion_conjC():
     string = ui.conjC.text()
     ui.operacion.setText(ui.operacion.text() + 'C')
     for i in remove:
-        if i in ui.operacion.text():
+        if i in string:
             string = string.replace(i, '')
     for i in string.split(','):
         setC.add(i)
@@ -68,40 +67,41 @@ def funcion_igual():
     if "AUB" in ui.operacion.text():
         set_conjAB = setA.union(setB)
         print(set_conjAB)
-        ui.resultado.setPlainText("AUB = " + str(set_conjAB))
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAB))
 
     if "AUC" in ui.operacion.text():
         set_conjAC = setA.union(setC)
         print(set_conjAC)
-        ui.resultado.setPlainText("AUB = " + str(set_conjAC))
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAC))
 
     if "A∩B" in ui.operacion.text():
         set_conjAB = setA.intersection(setB)
         print(set_conjAB)
-        ui.resultado.setPlainText("AUB = " + str(set_conjAB))
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAB))
 
     if "A∩C" in ui.operacion.text():
         set_conjAC = setA.intersection(setC)
         print(set_conjAC)
-        ui.resultado.setPlainText("AUB = " + str(set_conjAC))
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAC))
 
-    if "AUB∩C" in ui.operacion.text():
-        set_conjABC = (setA.union(setB)).intersection(setC)
+    if "(AUB)∩C" in ui.operacion.text():
+        set_conjABC = setA.union(setB)
+        set_conjABC = set_conjABC.intersection(setC)
         print(set_conjABC)
-        ui.resultado.setPlainText("AUB = " + str(set_conjABC))
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
+
+    if "AU(B∩C)" in ui.operacion.text():
+        set_conjABC = setB.intersection(setC)
+        set_conjABC = set_conjABC.union(setA)
+        print(set_conjABC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
     if "AUBUC" in ui.operacion.text():
-        set_conjABC = setA.union(setB).union(setC)
+        set_conjABC = setA.union(setB)
+        set_conjABC = set_conjABC.union(setC)
         print(set_conjABC)
-        ui.resultado.setPlainText("AUB = " + str(set_conjABC))
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-
-    # string = ui.operacion.text()
-    # remove = ["A", 'B', 'C', '=', '{', '}']
-    # for i in remove:
-    #     if i in ui.operacion.text():
-    #         string = string.replace(i, '')
-    # print(string.split(','))
 
 def funcion_ac():
     setA.clear()
