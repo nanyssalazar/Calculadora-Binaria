@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>495</width>
-    <height>620</height>
+    <width>483</width>
+    <height>681</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -80,7 +80,7 @@
      <string notr="true">background-color: rgb(226, 231, 231);</string>
     </property>
     <property name="text">
-     <string>U</string>
+     <string>∪</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_interseccion">
@@ -135,7 +135,7 @@
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>460</y>
+      <y>520</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -151,7 +151,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>460</y>
+      <y>520</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -167,7 +167,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>400</y>
+      <y>520</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -183,7 +183,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>460</y>
+      <y>520</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -230,7 +230,7 @@
    <widget class="QPushButton" name="btn_equiv">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>390</x>
       <y>520</y>
       <width>71</width>
       <height>51</height>
@@ -247,7 +247,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>280</y>
+      <y>340</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -263,7 +263,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>220</y>
+      <y>280</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -279,7 +279,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>340</y>
+      <y>400</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -294,9 +294,9 @@
    <widget class="QPushButton" name="btn_igual">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>520</y>
-      <width>341</width>
+      <x>30</x>
+      <y>580</y>
+      <width>431</width>
       <height>51</height>
      </rect>
     </property>
@@ -311,7 +311,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>400</y>
+      <y>460</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -327,7 +327,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>400</y>
+      <y>460</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -343,7 +343,7 @@
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>400</y>
+      <y>460</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -406,7 +406,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>220</y>
+      <y>280</y>
       <width>250</width>
       <height>51</height>
      </rect>
@@ -428,7 +428,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>280</y>
+      <y>340</y>
       <width>250</width>
       <height>51</height>
      </rect>
@@ -450,7 +450,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>340</y>
+      <y>400</y>
       <width>250</width>
       <height>51</height>
      </rect>
@@ -468,13 +468,51 @@
      <string> Valores de C</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_universo">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>220</y>
+      <width>71</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(226, 231, 231);</string>
+    </property>
+    <property name="text">
+     <string>U</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="universo">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>220</y>
+      <width>250</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>Universo</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>495</width>
+     <width>483</width>
      <height>22</height>
     </rect>
    </property>
