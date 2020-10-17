@@ -10,6 +10,17 @@ setC = set()
 set_conjAB = set()
 set_conjAC = set()
 set_conjABC = set()
+set_difAB = set()
+set_difAC = set()
+set_difBA = set()
+set_difBC = set()
+set_difCA = set()
+set_difCB = set()
+set_difABC = set()
+set_compA = set()
+set_compB = set()
+set_compC = set()
+
 
 def funcion_conjA():
     #ui.operacion.setText(ui.operacion.text() + ui.btn_conjA.text())
@@ -62,6 +73,13 @@ def funcion_union():
 def funcion_inter():
     ui.operacion.setText(ui.operacion.text() + '∩')
 
+def funcion_resta():
+    ui.operacion.setText(ui.operacion.text() + '-')
+
+def funcion_comp():
+    ui.operacion.setText(ui.operacion.text() + "'")
+
+
 def funcion_igual():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     if "AUB" in ui.operacion.text():
@@ -102,6 +120,74 @@ def funcion_igual():
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
+    if "A-B" in ui.operacion.text():
+        set_difAB = setA.difference(setB)
+        print(set_difAB)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difAB))
+
+    if "A-C" in ui.operacion.text():
+        set_difAC = setA.difference(setC)
+        print(set_difAC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difAC))
+
+    if "B-A" in ui.operacion.text():
+        set_difBA = setB.difference(setA)
+        print(set_difBA)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difBA))
+
+    if "B-C" in ui.operacion.text():
+        set_difBC = setB.difference(setC)
+        print(set_difBC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difBC))
+
+    if "C-A" in ui.operacion.text():
+        set_difCA = setC.difference(setA)
+        print(set_difCA)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difCA))
+
+    if "C-B" in ui.operacion.text():
+        set_difCB = setC.difference(setB)
+        print(set_difCB)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difCB))
+
+    if "(A-B)-C" in ui.operacion.text():
+        set_difABC = setA.difference(setB)
+        set_difABC = set_difABC.difference(setC)
+        print(set_difABC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difABC))
+
+    if "(A-C)-B" in ui.operacion.text():
+        set_difABC = setA.difference(setC)
+        set_difABC = set_difABC.difference(setB)
+        print(set_difABC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difABC))
+
+    if "(B-A)-C" in ui.operacion.text():
+        set_difABC = setB.difference(setA)
+        set_difABC = set_difABC.difference(setC)
+        print(set_difABC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difABC))
+
+    if "(B-C)-A" in ui.operacion.text():
+        set_difABC = setB.difference(setC)
+        set_difABC = set_difABC.difference(setA)
+        print(set_difABC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difABC))
+
+    if "(C-A)-B" in ui.operacion.text():
+        set_difABC = setC.difference(setA)
+        set_difABC = set_difABC.difference(setB)
+        print(set_difABC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difABC))
+
+    if "(C-B)-A" in ui.operacion.text():
+        set_difABC = setC.difference(setB)
+        set_difABC = set_difABC.difference(setA)
+        print(set_difABC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difABC))
+
+
+
 
 def funcion_ac():
     setA.clear()
@@ -132,6 +218,8 @@ if __name__ == "__main__":
     ui.btn_conjC.clicked.connect(funcion_conjC)
     ui.btn_interseccion.clicked.connect(funcion_inter)
     ui.btn_ac.clicked.connect(funcion_ac)
+    ui.btn_resta.clicked.connect(funcion_resta)
+    ui.btn_a.clicked.connect(funcion_comp)
 
     main_window.show()
     sys.exit(app.exec_())
