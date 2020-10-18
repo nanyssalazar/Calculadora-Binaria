@@ -2,11 +2,12 @@ from PyQt5 import QtWidgets
 from PySide2.QtCore import SIGNAL
 import UI
 
-remove = ["A", 'B', 'C', '=', '{', '}']
+remove = ["A", 'B', 'C', '=', '{', '}', 'U']
 
 setA = set()
 setB = set()
 setC = set()
+setU = set()
 set_conjAB = set()
 set_conjAC = set()
 set_conjABC = set()
@@ -20,6 +21,7 @@ set_difABC = set()
 set_compA = set()
 set_compB = set()
 set_compC = set()
+set_compABC = set()
 
 
 def funcion_conjA():
@@ -65,6 +67,15 @@ def funcion_conjC():
     #     print(setA.union(setB).union(setC))
     # if "AUB∩C" in ui.operacion.text():
     #     print(setA.union(setB).intersection(setC))
+
+def funcion_conjU():
+    string = ui.universo.text()
+    ui.operacion.setText(ui.operacion.text() + 'U')
+    for i in remove:
+        if i in string:
+            string = string.replace(i, '')
+    for i in string.split(','):
+        setU.add(i)
 
 
 def funcion_union():
@@ -186,13 +197,16 @@ def funcion_igual():
         print(set_difABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_difABC))
 
-
-
+    if "A'" in ui.operacion.text():
+        set_compA = setU.difference(setA)
+        print(str(set_compA))
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_compA))
 
 def funcion_ac():
     setA.clear()
     setB.clear()
     setC.clear()
+    setU.clear()
     set_conjAB.clear()
     set_conjAC.clear()
     set_conjABC.clear()
@@ -200,7 +214,19 @@ def funcion_ac():
     ui.conjA.clear()
     ui.conjB.clear()
     ui.conjC.clear()
+    ui.universo.clear()
     ui.resultado.clear()
+    set_compA.clear()
+    set_compB.clear()
+    set_compC.clear()
+    set_compABC.clear()
+    set_difAB.clear()
+    set_difAC.clear()
+    set_difBA.clear()
+    set_difBC.clear()
+    set_difCA.clear()
+    set_difCB.clear()
+    set_difABC.clear()
 
 if __name__ == "__main__":
     import sys
