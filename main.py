@@ -81,7 +81,7 @@ def funcion_resta():
     ui.operacion.setText(ui.operacion.text() + '-')
 
 def funcion_comp():
-    ui.operacion.setText(ui.operacion.text() + "A'")
+    ui.operacion.setText(ui.operacion.text() + "'")
 
 
 def funcion_igual():
@@ -201,6 +201,32 @@ def funcion_igual():
         set_compA = setU.difference(setA)
         print(str(set_compA))
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_compA))
+
+    if "B'" in ui.operacion.text():
+        string = ui.conjB.text()
+        for i in remove:
+            if i in string:
+                string = string.replace(i, '')
+        for i in string.split(','):
+            setB.add(i)
+        funcion_conjU()
+        set_compB = setU.difference(setB)
+        print(str(set_compB))
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_compB))
+
+    if "C'" in ui.operacion.text():
+        string = ui.conjC.text()
+        for i in remove:
+            if i in string:
+                string = string.replace(i, '')
+        for i in string.split(','):
+            setC.add(i)
+        funcion_conjU()
+        set_compC = setU.difference(setC)
+        print(str(set_compC))
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_compC))
+
+
 
 def funcion_ac():
     setA.clear()
