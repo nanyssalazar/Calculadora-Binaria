@@ -226,6 +226,10 @@ def funcion_igual():
         print(str(set_compC))
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_compC))
 
+def funcion_del():
+    string = ui.operacion.text()
+    string = string[:-1]
+    ui.operacion.setText(string)
 
 
 def funcion_ac():
@@ -267,6 +271,6 @@ if __name__ == "__main__":
     ui.btn_ac.clicked.connect(funcion_ac)
     ui.btn_resta.clicked.connect(funcion_resta)
     ui.btn_a.clicked.connect(funcion_comp)
-
+    ui.btn_del.clicked.connect(funcion_del)
     main_window.show()
     sys.exit(app.exec_())
