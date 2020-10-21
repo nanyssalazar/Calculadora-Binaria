@@ -83,6 +83,36 @@ def funcion_resta():
 def funcion_comp():
     ui.operacion.setText(ui.operacion.text() + "'")
 
+def funcion_p():
+    ui.operacion.setText(ui.operacion.text() + "p")
+
+def funcion_q():
+    ui.operacion.setText(ui.operacion.text() + "q")
+
+def funcion_r():
+    ui.operacion.setText(ui.operacion.text() + "r")
+
+def funcion_btnEquiv():
+    ui.operacion.setText(ui.operacion.text() + "≡")
+
+def funcion_btnBirrelacional():
+    ui.operacion.setText(ui.operacion.text() + "↔")
+
+def funcion_btnRelacional():
+    ui.operacion.setText(ui.operacion.text() + "→")
+
+def funcion_btnAnd():
+    ui.operacion.setText(ui.operacion.text() + "^")
+
+def funcion_btnOr():
+    ui.operacion.setText(ui.operacion.text() + "v")
+
+def funcion_btnNot():
+    ui.operacion.setText(ui.operacion.text() + "¬")
+
+def funcion_btnx():
+    ui.operacion.setText(ui.operacion.text() + "x")
+
 
 def funcion_igual():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
@@ -252,6 +282,60 @@ def funcion_ac():
     set_compC.clear()
     set_compABC.clear()
 
+def funcion_modConj():
+    funcion_ac()
+    ui.btn_not.setVisible(False)
+    ui.btn_and.setVisible(False)
+    ui.btn_or.setVisible(False)
+    ui.btn_relacional.setVisible(False)
+    ui.btn_birelaccional.setVisible(False)
+    ui.btn_equiv.setVisible(False)
+    ui.btn_q.setVisible(False)
+    ui.btn_p.setVisible(False)
+    ui.btn_r.setVisible(False)
+    ui.tabla.setVisible(False)
+    ui.btn_union.setVisible(True)
+    ui.btn_interseccion.setVisible(True)
+    #a es complemento
+    ui.btn_a.setVisible(True)
+    ui.btn_resta.setVisible(True)
+    ui.resultado.setVisible(True)
+    ui.conjA.setVisible(True)
+    ui.conjB.setVisible(True)
+    ui.conjC.setVisible(True)
+    ui.btn_universo.setVisible(True)
+    ui.universo.setVisible(True)
+    ui.btn_conjA.setVisible(True)
+    ui.btn_conjB.setVisible(True)
+    ui.btn_conjC.setVisible(True)
+
+def funcion_modProp():
+    funcion_ac()
+    ui.btn_not.setVisible(True)
+    ui.btn_and.setVisible(True)
+    ui.btn_or.setVisible(True)
+    ui.btn_relacional.setVisible(True)
+    ui.btn_birelaccional.setVisible(True)
+    ui.btn_equiv.setVisible(True)
+    ui.btn_q.setVisible(True)
+    ui.btn_p.setVisible(True)
+    ui.btn_r.setVisible(True)
+    ui.tabla.setVisible(True)
+    ui.btn_union.setVisible(False)
+    ui.btn_interseccion.setVisible(False)
+    # a es complemento
+    ui.btn_a.setVisible(False)
+    ui.btn_resta.setVisible(False)
+    ui.resultado.setVisible(False)
+    ui.conjA.setVisible(False)
+    ui.conjB.setVisible(False)
+    ui.conjC.setVisible(False)
+    ui.btn_universo.setVisible(False)
+    ui.universo.setVisible(False)
+    ui.btn_conjA.setVisible(False)
+    ui.btn_conjB.setVisible(False)
+    ui.btn_conjC.setVisible(False)
+
 
 if __name__ == "__main__":
     import sys
@@ -272,5 +356,19 @@ if __name__ == "__main__":
     ui.btn_resta.clicked.connect(funcion_resta)
     ui.btn_a.clicked.connect(funcion_comp)
     ui.btn_del.clicked.connect(funcion_del)
+    ui.btn_modConj.clicked.connect(funcion_modConj)
+    ui.btn_modProp.clicked.connect(funcion_modProp)
+    ui.btn_p.clicked.connect(funcion_p)
+    ui.btn_q.clicked.connect(funcion_q)
+    ui.btn_r.clicked.connect(funcion_r)
+    ui.btn_equiv.clicked.connect(funcion_btnEquiv)
+    ui.btn_birelaccional.clicked.connect(funcion_btnBirrelacional)
+    ui.btn_relacional.clicked.connect(funcion_btnRelacional)
+    ui.btn_and.clicked.connect(funcion_btnAnd)
+    ui.btn_or.clicked.connect(funcion_btnOr)
+    ui.btn_not.clicked.connect(funcion_btnNot)
+    ui.btn_x.clicked.connect(funcion_btnx)
     main_window.show()
     sys.exit(app.exec_())
+
+
