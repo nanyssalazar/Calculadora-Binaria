@@ -1,5 +1,4 @@
 from PyQt5 import QtWidgets
-from PySide2.QtCore import SIGNAL
 import UI
 
 remove = ["A", 'B', 'C', '=', '{', '}', 'U']
