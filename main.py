@@ -19,7 +19,6 @@ set_compABC = set()
 
 
 def funcion_conjA():
-    #ui.operacion.setText(ui.operacion.text() + ui.btn_conjA.text())
     string = ui.conjA.text()
     ui.operacion.setText(ui.operacion.text()+'A')
     for i in remove:
@@ -27,6 +26,7 @@ def funcion_conjA():
             string = string.replace(i, '')
     for i in string.split(','):
         setA.add(i)
+
 
 def funcion_conjB():
     string = ui.conjB.text()
@@ -36,18 +36,7 @@ def funcion_conjB():
             string = string.replace(i, '')
     for i in string.split(','):
         setB.add(i)
-        #set_conj1 = setA.union(setB)
-        #print(set_conj1)
 
-    # string = ui.conjB.text()
-    # ui.operacion.setText(ui.operacion.text()+'B')
-    # remove = ["A", 'B', 'C', '=', '{', '}']
-    # for i in remove:
-    #     if i in ui.operacion.text():
-    #         string = string.replace(i, '')
-    # for i in string.split(','):
-    #     setB.add(i)
-    # print(setB)
 
 def funcion_conjC():
     string = ui.conjC.text()
@@ -57,10 +46,7 @@ def funcion_conjC():
             string = string.replace(i, '')
     for i in string.split(','):
         setC.add(i)
-    # if 'UC' in ui.operacion.text():
-    #     print(setA.union(setB).union(setC))
-    # if "AUB∩C" in ui.operacion.text():
-    #     print(setA.union(setB).intersection(setC))
+    print(setC)
 
 def funcion_conjU():
     string = ui.universo.text()
@@ -74,11 +60,14 @@ def funcion_conjU():
 def funcion_union():
     ui.operacion.setText(ui.operacion.text() + ui.btn_union.text())
 
+
 def funcion_inter():
     ui.operacion.setText(ui.operacion.text() + '∩')
 
+
 def funcion_resta():
     ui.operacion.setText(ui.operacion.text() + '-')
+
 
 def funcion_comp():
     ui.operacion.setText(ui.operacion.text() + "A'")
@@ -87,110 +76,109 @@ def funcion_comp():
 def funcion_igual():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     if "A∪B" in ui.operacion.text():
-        set_conjAB = setA.union(setB)
-        print(set_conjAB)
-        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAB))
+        set_conjABC = setA.union(setB).union(setC)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "A∪C" in ui.operacion.text():
+    elif "A∪C" in ui.operacion.text():
         set_conjAC = setA.union(setC)
         print(set_conjAC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAC))
 
-    if "A∩B" in ui.operacion.text():
+    elif "A∩B" in ui.operacion.text():
         set_conjAB = setA.intersection(setB)
         print(set_conjAB)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAB))
 
-    if "A∩C" in ui.operacion.text():
+    elif "A∩C" in ui.operacion.text():
         set_conjAC = setA.intersection(setC)
         print(set_conjAC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAC))
 
-    if "(A∪B)∩C" in ui.operacion.text():
+    elif "(A∪B)∩C" in ui.operacion.text():
         set_conjABC = setA.union(setB)
         set_conjABC = set_conjABC.intersection(setC)
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "A∪(B∩C)" in ui.operacion.text():
+    elif "A∪(B∩C)" in ui.operacion.text():
         set_conjABC = setB.intersection(setC)
         set_conjABC = set_conjABC.union(setA)
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "A∪B∪C" in ui.operacion.text():
+    elif "A∪B∪C" in ui.operacion.text():
         set_conjABC = setA.union(setB)
         set_conjABC = set_conjABC.union(setC)
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "A-B" in ui.operacion.text():
+    elif "A-B" in ui.operacion.text():
         set_conjAB = setA.difference(setB)
         print(set_conjAB)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAB))
 
-    if "A-C" in ui.operacion.text():
+    elif "A-C" in ui.operacion.text():
         set_conjAC = setA.difference(setC)
         print(set_conjAC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAC))
 
-    if "B-A" in ui.operacion.text():
+    elif "B-A" in ui.operacion.text():
         set_conjAB = setB.difference(setA)
         print(set_conjAB)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAB))
 
-    if "B-C" in ui.operacion.text():
+    elif "B-C" in ui.operacion.text():
         set_conjBC = setB.difference(setC)
         print(set_conjBC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjBC))
 
-    if "C-A" in ui.operacion.text():
+    elif "C-A" in ui.operacion.text():
         set_conjAC = setC.difference(setA)
         print(set_conjAC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjAC))
 
-    if "C-B" in ui.operacion.text():
+    elif "C-B" in ui.operacion.text():
         set_conjBC = setC.difference(setB)
         print(set_conjBC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjBC))
 
-    if "(A-B)-C" in ui.operacion.text():
+    elif "(A-B)-C" in ui.operacion.text():
         set_conjABC = setA.difference(setB)
         set_conjABC = set_conjABC.difference(setC)
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "(A-C)-B" in ui.operacion.text():
+    elif "(A-C)-B" in ui.operacion.text():
         set_conjABC = setA.difference(setC)
         set_conjABC = set_conjABC.difference(setB)
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "(B-A)-C" in ui.operacion.text():
+    elif "(B-A)-C" in ui.operacion.text():
         set_conjABC = setB.difference(setA)
         set_conjABC = set_conjABC.difference(setC)
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "(B-C)-A" in ui.operacion.text():
+    elif "(B-C)-A" in ui.operacion.text():
         set_conjABC = setB.difference(setC)
         set_conjABC = set_conjABC.difference(setA)
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "(C-A)-B" in ui.operacion.text():
+    elif "(C-A)-B" in ui.operacion.text():
         set_conjABC = setC.difference(setA)
         set_conjABC = set_conjABC.difference(setB)
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "(C-B)-A" in ui.operacion.text():
+    elif "(C-B)-A" in ui.operacion.text():
         set_conjABC = setC.difference(setB)
         set_conjABC = set_conjABC.difference(setA)
         print(set_conjABC)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_conjABC))
 
-    if "A'" in ui.operacion.text():
+    elif "A'" in ui.operacion.text():
         string = ui.conjA.text()
         for i in remove:
             if i in string:
@@ -202,25 +190,19 @@ def funcion_igual():
         print(str(set_compA))
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(set_compA))
 
+
 def funcion_ac():
     setA.clear()
     setB.clear()
     setC.clear()
     setU.clear()
-    set_conjAB.clear()
-    set_conjAC.clear()
-    set_conjBC.clear()
-    set_conjABC.clear()
     ui.operacion.clear()
     ui.conjA.clear()
     ui.conjB.clear()
     ui.conjC.clear()
     ui.universo.clear()
     ui.resultado.clear()
-    set_compA.clear()
-    set_compB.clear()
-    set_compC.clear()
-    set_compABC.clear()
+
 
 
 if __name__ == "__main__":
@@ -231,7 +213,6 @@ if __name__ == "__main__":
     ui.setupUi(main_window)
 
     # Aquí van las funciones
-    #ui.btn_union.clicked.connect(funcion)
     ui.btn_conjA.clicked.connect(funcion_conjA)
     ui.btn_conjB.clicked.connect(funcion_conjB)
     ui.btn_union.clicked.connect(funcion_union)
