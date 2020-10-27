@@ -11,8 +11,7 @@ set_compB = set()
 set_compC = set()
 set_compABC = set()
 
-remove = ["A", 'B', 'C', '=', '{', '}', 'U']
-
+remove = ['A', 'B', 'C', '=', '{', '}', 'U']
 
 def conj_a():
     string = ui.conjA.text()
@@ -32,7 +31,7 @@ def conj_b():
             string = string.replace(i, '')
     for i in string.split(','):
         setB.add(i)
-
+    return True
 
 def conj_c():
     string = ui.conjC.text()
@@ -59,6 +58,10 @@ def union():
 
 def interseccion():
     ui.operacion.setText(ui.operacion.text() + '∩')
+    if conj_b():
+        conjunto = setA.intersection(setB)
+        print(conjunto)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
 
 def resta():
@@ -72,9 +75,10 @@ def complemento():
 def resultado():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     if "A∪B" in ui.operacion.text():
-        conjunto = setA.union(setB)
-        print(conjunto)
-        ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
+        pass
+        #conjunto = setA.union(setB)
+        #print(conjunto)
+        # ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
     if "A∪C" in ui.operacion.text():
         conjunto = setA.union(setC)
@@ -82,9 +86,10 @@ def resultado():
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
     if "A∩B" in ui.operacion.text():
-        conjunto = setA.intersection(setB)
-        print(conjunto)
-        ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
+        pass
+        #conjunto = setA.intersection(setB)
+        #print(conjunto)
+        #ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
     elif "A∩C" in ui.operacion.text():
         conjunto = setA.intersection(setC)
@@ -240,7 +245,7 @@ if __name__ == "__main__":
 
     # Aquí van las funciones
     ui.btn_conjA.clicked.connect(conj_a)
-    ui.btn_conjB.clicked.connect(conj_b)
+    #ui.btn_conjB.clicked.connect(conj_b)
     ui.btn_conjC.clicked.connect(conj_c)
 
     ui.btn_union.clicked.connect(union)
