@@ -36,18 +36,6 @@ def funcion_conjB():
             string = string.replace(i, '')
     for i in string.split(','):
         setB.add(i)
-        #set_conj1 = setA.union(setB)
-        #print(set_conj1)
-
-    # string = ui.conjB.text()
-    # ui.operacion.setText(ui.operacion.text()+'B')
-    # remove = ["A", 'B', 'C', '=', '{', '}']
-    # for i in remove:
-    #     if i in ui.operacion.text():
-    #         string = string.replace(i, '')
-    # for i in string.split(','):
-    #     setB.add(i)
-    # print(setB)
 
 def funcion_conjC():
     string = ui.conjC.text()
@@ -57,10 +45,6 @@ def funcion_conjC():
             string = string.replace(i, '')
     for i in string.split(','):
         setC.add(i)
-    # if 'UC' in ui.operacion.text():
-    #     print(setA.union(setB).union(setC))
-    # if "AUB∩C" in ui.operacion.text():
-    #     print(setA.union(setB).intersection(setC))
 
 def funcion_conjU():
     string = ui.universo.text()
