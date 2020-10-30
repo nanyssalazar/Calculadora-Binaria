@@ -306,6 +306,17 @@ if __name__ == "__main__":
     main_window = QtWidgets.QMainWindow()
     ui = UI.Ui_MainWindow()
     ui.setupUi(main_window)
+    #Mostrar primera configuracion
+    ui.btn_not.setVisible(False)
+    ui.btn_and.setVisible(False)
+    ui.btn_or.setVisible(False)
+    ui.btn_relacional.setVisible(False)
+    ui.btn_birelaccional.setVisible(False)
+    ui.btn_equiv.setVisible(False)
+    ui.btn_q.setVisible(False)
+    ui.btn_p.setVisible(False)
+    ui.btn_r.setVisible(False)
+    ui.tabla.setVisible(False)
 
     # Aquí van las funciones
     #ui.btn_union.clicked.connect(funcion)
