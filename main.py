@@ -36,6 +36,7 @@ def conj_c():
 def conj_u():
     crear_conjunto(str(ui.universo.text()), setU)
 
+
 def union():
     ui.operacion.setText(ui.operacion.text() + '∪')
 
@@ -95,21 +96,19 @@ def btn_x():
 def resultado():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     dic = {"A": setA, "B": setB, "C": setC, "U": setU}
-    #conjunto = {}
+    conjunto = set()  # tambien se puede usar = {} - esta linea se puede comentar pero marca amarillo
     # Si se tiene una operación con parentesis
     if "(" in ui.operacion.text():
         # Encuentra los parentesis y devuelve el index
         parentesis1 = ui.operacion.text().index("(")
         parentesis2 = ui.operacion.text().index(")")
-        print(parentesis1)
-        print(parentesis2)
         conj1 = ui.operacion.text()[parentesis1+1]
         conj2 = ui.operacion.text()[parentesis2-1]
         if ui.operacion.text()[parentesis1+2] == "∪":
-            #se remplaza la clave dentro de var conj que esta dentro del diccionario por el objeto que le corresponde
+            # se remplaza la clave dentro de var conj que esta dentro del diccionario por el objeto que le corresponde
             conjunto = dic.get(conj1).union(dic.get(conj2))
             print(conjunto)
-        elif ui.operacion.text()[parentesis1+2]=='∩':
+        elif ui.operacion.text()[parentesis1+2] == '∩':
             conjunto = dic.get(conj1).intersection(dic.get(conj2))
             print(conjunto)
         elif ui.operacion.text()[parentesis1 + 2] == '-':
@@ -117,7 +116,7 @@ def resultado():
             print(conjunto)
 
         # Si antes del parentesis esta la otra operación y es una unión
-        if ui.operacion.text()[parentesis1-1]=='∪':
+        if ui.operacion.text()[parentesis1-1] == '∪':
             # Si se unia con A con B o con C
             conj1 = ui.operacion.text()[parentesis1-2]
             conjunto = conjunto.union(dic.get(conj1))
@@ -138,7 +137,7 @@ def resultado():
             print(conjunto)
 
         # Si despues del parentesis esta la otra operación y es una unión
-        elif ui.operacion.text()[parentesis2+1]=='∪':
+        elif ui.operacion.text()[parentesis2+1] == '∪':
             conj1 = ui.operacion.text()[parentesis2+2]
             print(conj1)
             conjunto = conjunto.union(dic.get(conj1))
@@ -162,7 +161,7 @@ def resultado():
         conj2 = ui.operacion.text()[2]
         # Si es una unión
         if "∪" in ui.operacion.text():
-            #se remplaza la clave dentro de var conj que esta dentro del diccionario por el objeto que le corresponde
+            # se remplaza la clave dentro de var conj que esta dentro del diccionario por el objeto que le corresponde
             conjunto = dic.get(conj1).union(dic.get(conj2))
             print(conjunto)
         # Si es una intersección
@@ -179,144 +178,6 @@ def resultado():
             conjunto = setU.difference(dic.get(conj1))
             print(conjunto)
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-
-    # FALTA PONER LAS RESTAS Y LOS COMPLEMENTOS, TAMBIÉN FALTA QUE HAGA LAS OPERACIONES NORMALES (CUANDO NO SE USA PARENTESIS)
-
-
-
-
-    # elif ui.operacion.text()[1]=='-':
-    #     if ui.operacion.text()[2] == "B":
-    #         conjunto = setA.difference(setB)
-    #         print(conjunto)
-    #     elif ui.operacion.text()[2] == "C":
-    #         conjunto = setA.difference(setC)
-    #         print(conjunto)
-
-    # if "A∪B" in ui.operacion.text():
-    #     conjunto = setA.union(setB)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "A∪C" in ui.operacion.text():
-    #     conjunto = setA.union(setC)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "A∩B" in ui.operacion.text():
-    #     conjunto = setA.intersection(setB)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "A∩C" in ui.operacion.text():
-    #     conjunto = setA.intersection(setC)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "(A∪B)∩C" in ui.operacion.text():
-    #     conjunto = setA.union(setB)
-    #     conjunto = conjunto.intersection(setC)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "A∪(B∩C)" in ui.operacion.text():
-    #     conjunto = setB.intersection(setC)
-    #     conjunto = conjunto.union(setA)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "A∪B∪C" in ui.operacion.text():
-    #     conjunto = setA.union(setB)
-    #     conjunto = conjunto.union(setC)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "A-B" in ui.operacion.text():
-    #     conjunto = setA.difference(setB)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "A-C" in ui.operacion.text():
-    #     conjunto = setA.difference(setC)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "B-A" in ui.operacion.text():
-    #     conjunto = setB.difference(setA)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "B-C" in ui.operacion.text():
-    #     conjunto = setB.difference(setC)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "C-A" in ui.operacion.text():
-    #     conjunto = setC.difference(setA)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "C-B" in ui.operacion.text():
-    #     conjunto = setC.difference(setB)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "(A-B)-C" in ui.operacion.text():
-    #     conjunto = setA.difference(setB)
-    #     conjunto = conjunto.difference(setC)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "(A-C)-B" in ui.operacion.text():
-    #     conjunto = setA.difference(setC)
-    #     conjunto = conjunto.difference(setB)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "(B-A)-C" in ui.operacion.text():
-    #     conjunto = setB.difference(setA)
-    #     conjunto = conjunto.difference(setC)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "(B-C)-A" in ui.operacion.text():
-    #     conjunto = setB.difference(setC)
-    #     conjunto = conjunto.difference(setA)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "(C-A)-B" in ui.operacion.text():
-    #     conjunto = setC.difference(setA)
-    #     conjunto = conjunto.difference(setB)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "(C-B)-A" in ui.operacion.text():
-    #     conjunto = setC.difference(setB)
-    #     conjunto = conjunto.difference(setA)
-    #     print(conjunto)
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-
-    # elif "A'" in ui.operacion.text():
-    #     crear_conjunto(str(ui.conjA.text()), setA)
-    #     conj_u()
-    #     conjunto = setU.difference(setA)
-    #     print(str(conjunto))
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "B'" in ui.operacion.text():
-    #     crear_conjunto(str(ui.conjB.text()), setB)
-    #     conj_u()
-    #     conjunto = setU.difference(setB)
-    #     print(str(conjunto))
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    #
-    # elif "C'" in ui.operacion.text():
-    #     crear_conjunto(str(ui.conjC.text()), setC)
-    #     conj_u()
-    #     conjunto = setU.difference(setC)
-    #     print(str(conjunto))
-    #     ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
 
 def delete():
@@ -414,7 +275,6 @@ if __name__ == "__main__":
     ui.tabla.setVisible(False)
 
     # Aquí van las funciones
-    #ui.btn_union.clicked.connect(funcion)
     ui.btn_conjA.clicked.connect(conj_a)
     ui.btn_conjB.clicked.connect(conj_b)
     ui.btn_union.clicked.connect(union)
