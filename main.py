@@ -5,6 +5,10 @@ setA = set()
 setB = set()
 setC = set()
 setU = set()
+setcompA = set()
+setcompB = set()
+setcompC = set()
+
 
 
 quitar = ["A", 'B', 'C', '=', '{', '}', 'U']
@@ -50,8 +54,21 @@ def resta():
 
 
 def complemento():
-    ui.operacion.setText(ui.operacion.text() + "A'")
-
+    dic = {"A": setA, "B": setB, "C": setC, "U": setU, "A'": setcompA, "B'": setcompB, "C'": setcompC}
+    # Crear conjunto Universo
+    crear_conjunto(str(ui.universo.text()), setU)
+    # Encontrar conjunto por complementar
+    conj = ui.operacion.text()[-1]
+    # Agregar '
+    ui.operacion.setText(ui.operacion.text() + "'")
+    # Encontrar diferencia con U
+    comp = setU.difference(dic.get(conj))
+    # Cambiar conjunto a complemento del conjunto x --> x'
+    conj = conj + "'"
+    # Agregar los elemntos al complemento correspondiente
+    for i in comp:
+        dic.get(conj).add(i)
+    print(dic.get(conj))
 
 def btn_p():
     ui.operacion.setText(ui.operacion.text() + "p")
@@ -95,7 +112,7 @@ def btn_x():
 
 def resultado():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
-    dic = {"A": setA, "B": setB, "C": setC, "U": setU}
+    dic = {"A": setA, "B": setB, "C": setC, "U": setU, "A'": setcompA, "B'":setcompB, "C'": setcompC}
     conjunto = set()  # tambien se puede usar = {} - esta linea se puede comentar pero marca amarillo
     # Si se tiene una operación con parentesis
     if "(" in ui.operacion.text():
@@ -174,9 +191,10 @@ def resultado():
             print(conjunto)
         # Ahorita solo se tiene el complemento de A
         elif "'" in ui.operacion.text():
-            conj_a()
-            conjunto = setU.difference(dic.get(conj1))
-            print(conjunto)
+            comp = ui.operacion.text().index("'")
+            conj = ui.operacion.text()[comp-1] + "'"
+            conjunto = dic.get(conj)
+            print(dic.get(conj))
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
 
