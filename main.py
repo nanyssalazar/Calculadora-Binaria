@@ -185,26 +185,35 @@ def resultado():
     # Si son operaciones sin parentesis
     else:
         conj1 = ui.operacion.text()[0]
-        conj2 = ui.operacion.text()[2]
-        # Si es una unión
-        if "∪" in ui.operacion.text():
-            # se remplaza la clave dentro de var conj que esta dentro del diccionario por el objeto que le corresponde
-            conjunto = dic.get(conj1).union(dic.get(conj2))
-            print(conjunto)
-        # Si es una intersección
-        elif '∩' in ui.operacion.text():
-            conjunto = dic.get(conj1).intersection(dic.get(conj2))
-            print(conjunto)
-        # Si es una resta
-        elif '-' in ui.operacion.text():
-            conjunto = dic.get(conj1).difference(dic.get(conj2))
-            print(conjunto)
-        # Ahorita solo se tiene el complemento de A
-        elif "'" in ui.operacion.text():
-            comp = ui.operacion.text().index("'")
-            conj = ui.operacion.text()[comp-1] + "'"
-            conjunto = dic.get(conj)
-            print(dic.get(conj))
+        # Para calcular el complemento de un solo conjunto sin otra operacion
+        if len(ui.operacion.text()) == 3 and ui.operacion.text()[1] == "'":
+            conj1 = conj1 + "'"
+            conjunto = dic.get(conj1)
+            print(dic.get(conj1))
+        else:
+            conj2 = ui.operacion.text()[2]
+            # si el primer conjunto es complemento
+            if ui.operacion.text()[1] == "'":
+                conj1 = conj1 + "'"
+                conj2 = ui.operacion.text()[3]
+            # si el conjunto es complemento cambia el objeto
+            if ui.operacion.text()[-2] == "'":
+                conj2 = ui.operacion.text()[-3] + "'"
+
+            # Si es una unión
+            if "∪" in ui.operacion.text():
+                # se remplaza la clave dentro de var conj que esta dentro del diccionario por el objeto que le corresponde
+                conjunto = dic.get(conj1).union(dic.get(conj2))
+                print(conjunto)
+            # Si es una intersección
+            elif '∩' in ui.operacion.text():
+                conjunto = dic.get(conj1).intersection(dic.get(conj2))
+                print(conjunto)
+            # Si es una resta
+            elif '-' in ui.operacion.text():
+                conjunto = dic.get(conj1).difference(dic.get(conj2))
+                print(conjunto)
+
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
 
