@@ -36,7 +36,6 @@ def conj_c():
 def conj_u():
     crear_conjunto(str(ui.universo.text()), setU)
 
-
 def union():
     ui.operacion.setText(ui.operacion.text() + '∪')
 
@@ -96,9 +95,7 @@ def btn_x():
 def resultado():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     dic = {"A": setA, "B": setB, "C": setC, "U": setU}
-    parentesis1 = 0
-    parentesis2 = 0
-    conjunto = {}
+    #conjunto = {}
     # Si se tiene una operación con parentesis
     if "(" in ui.operacion.text():
         # Encuentra los parentesis y devuelve el index
@@ -119,49 +116,70 @@ def resultado():
             conjunto = dic.get(conj1).difference(dic.get(conj2))
             print(conjunto)
 
+        # Si antes del parentesis esta la otra operación y es una unión
+        if ui.operacion.text()[parentesis1-1]=='∪':
+            # Si se unia con A con B o con C
+            conj1 = ui.operacion.text()[parentesis1-2]
+            conjunto = conjunto.union(dic.get(conj1))
+            print(conjunto)
 
-    # Si antes del parentesis esta la otra operación y es una unión
-    if ui.operacion.text()[parentesis1-1]=='∪':
-        # Si se unia con A con B o con C
-        conj1 = ui.operacion.text()[parentesis1-2]
-        conjunto = conjunto.union(dic.get(conj1))
-        print(conjunto)
+        # Si antes del parentesis esta la otra operación y es una intersección
+        elif ui.operacion.text()[parentesis1 - 1] == '∩':
+            # Si es con B o con C
+            conj1 = ui.operacion.text()[parentesis1 - 2]
+            conjunto = conjunto.intersection(dic.get(conj1))
+            print(conjunto)
 
-    # Si antes del parentesis esta la otra operación y es una intersección
-    if ui.operacion.text()[parentesis1 - 1] == '∩':
-        # Si es con B o con C
-        conj1 = ui.operacion.text()[parentesis1 - 2]
-        conjunto = conjunto.intersection(dic.get(conj1))
-        print(conjunto)
+        # Si antes del parentesis esta la otra operación y es una resta
+        elif ui.operacion.text()[parentesis1 - 1] == '-':
+            # Si es con B o con C
+            conj1 = ui.operacion.text()[parentesis1 - 2]
+            conjunto = conjunto.difference(dic.get(conj1))
+            print(conjunto)
 
-    # Si antes del parentesis esta la otra operación y es una resta
-    if ui.operacion.text()[parentesis1 - 1] == '-':
-        # Si es con B o con C
-        conj1 = ui.operacion.text()[parentesis1 - 2]
-        conjunto = conjunto.difference(dic.get(conj1))
-        print(conjunto)
+        # Si despues del parentesis esta la otra operación y es una unión
+        elif ui.operacion.text()[parentesis2+1]=='∪':
+            conj1 = ui.operacion.text()[parentesis2+2]
+            print(conj1)
+            conjunto = conjunto.union(dic.get(conj1))
+            print(conjunto)
 
+        # Si despues del parentesis esta la otra operación y es una intersección
+        elif ui.operacion.text()[parentesis2+1] == '∩':
+            conj1 = ui.operacion.text()[parentesis2 + 2]
+            conjunto = conjunto.intersection(dic.get(conj1))
+            print(conjunto)
+        # Si despues del parentesis esta la otra operación y es una resta
+        elif ui.operacion.text()[parentesis2+1] == '-':
+            conj1 = ui.operacion.text()[parentesis2 + 2]
+            conjunto = conjunto.difference(dic.get(conj1))
+            print(conjunto)
+        # Pone el resultado final
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
+    # Si son operaciones sin parentesis
+    else:
+        conj1 = ui.operacion.text()[0]
+        conj2 = ui.operacion.text()[2]
+        # Si es una unión
+        if "∪" in ui.operacion.text():
+            #se remplaza la clave dentro de var conj que esta dentro del diccionario por el objeto que le corresponde
+            conjunto = dic.get(conj1).union(dic.get(conj2))
+            print(conjunto)
+        # Si es una intersección
+        elif '∩' in ui.operacion.text():
+            conjunto = dic.get(conj1).intersection(dic.get(conj2))
+            print(conjunto)
+        # Si es una resta
+        elif '-' in ui.operacion.text():
+            conjunto = dic.get(conj1).difference(dic.get(conj2))
+            print(conjunto)
+        # Ahorita solo se tiene el complemento de A
+        elif "'" in ui.operacion.text():
+            conj_a()
+            conjunto = setU.difference(dic.get(conj1))
+            print(conjunto)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
-    # Si despues del parentesis esta la otra operación y es una unión
-    if ui.operacion.text()[parentesis2+1]=='∪':
-        conj1 = ui.operacion.text()[parentesis2+2]
-        print(conj1)
-        conjunto = conjunto.union(dic.get(conj1))
-        print(conjunto)
-
-    # Si despues del parentesis esta la otra operación y es una intersección
-    if ui.operacion.text()[parentesis2+1] == '∩':
-        conj1 = ui.operacion.text()[parentesis2 + 2]
-        conjunto = conjunto.intersection(dic.get(conj1))
-        print(conjunto)
-    # Si despues del parentesis esta la otra operación y es una resta
-    if ui.operacion.text()[parentesis2+1] == '-':
-        conj1 = ui.operacion.text()[parentesis2 + 2]
-        conjunto = conjunto.difference(dic.get(conj1))
-        print(conjunto)
-
-    # Pone el resultado final
-    ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
     # FALTA PONER LAS RESTAS Y LOS COMPLEMENTOS, TAMBIÉN FALTA QUE HAGA LAS OPERACIONES NORMALES (CUANDO NO SE USA PARENTESIS)
 
 
