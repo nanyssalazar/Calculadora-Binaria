@@ -65,7 +65,7 @@ def complemento():
     comp = setU.difference(dic.get(conj))
     # Cambiar conjunto a complemento del conjunto x --> x'
     conj = conj + "'"
-    # Agregar los elemntos al complemento correspondiente
+    # Agregar los elementos al complemento correspondiente
     for i in comp:
         dic.get(conj).add(i)
     print(dic.get(conj))
@@ -121,6 +121,15 @@ def resultado():
         parentesis2 = ui.operacion.text().index(")")
         conj1 = ui.operacion.text()[parentesis1+1]
         conj2 = ui.operacion.text()[parentesis2-1]
+        #si el primer conjunto es complemento
+        if ui.operacion.text()[parentesis1+2] == "'":
+            conj1 = conj1 + "'"
+            #recorremos la posicion del parentesis ( porque ahora la operacion estará un indice despues
+            parentesis1+=1
+        #si el conjunto es complemento cambia el objeto
+        if conj2 == "'":
+            conj2 = ui.operacion.text()[parentesis2 - 2] + "'"
+
         if ui.operacion.text()[parentesis1+2] == "∪":
             # se remplaza la clave dentro de var conj que esta dentro del diccionario por el objeto que le corresponde
             conjunto = dic.get(conj1).union(dic.get(conj2))
@@ -172,6 +181,7 @@ def resultado():
             print(conjunto)
         # Pone el resultado final
         ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
+
     # Si son operaciones sin parentesis
     else:
         conj1 = ui.operacion.text()[0]
@@ -209,6 +219,9 @@ def all_clear():
     setB.clear()
     setC.clear()
     setU.clear()
+    setcompA.clear()
+    setcompB.clear()
+    setcompC.clear()
     ui.operacion.clear()
     ui.conjA.clear()
     ui.conjB.clear()
