@@ -88,7 +88,7 @@ def resultado():
             # Si es un complemento
             if ui.operacion.text()[parentesis1 - 2] == "'":
                 conj1 = ui.operacion.text()[parentesis1 - 3] + "'"
-                conjunto = conjunto.union(dic.get(conj1))
+                conjunto = conjunto.intersection(dic.get(conj1))
             else:
                 conj1 = ui.operacion.text()[parentesis1 - 2]
                 conjunto = conjunto.intersection(dic.get(conj1))
@@ -99,7 +99,7 @@ def resultado():
             # Si es un complemento
             if ui.operacion.text()[parentesis1 - 2] == "'":
                 conj1 = ui.operacion.text()[parentesis1 - 3] + "'"
-                conjunto = conjunto.union(dic.get(conj1))
+                conjunto = conjunto.difference(dic.get(conj1))
             else:
                 conj1 = ui.operacion.text()[parentesis1 - 2]
                 conjunto = conjunto.difference(dic.get(conj1))
@@ -122,7 +122,7 @@ def resultado():
             # Si es un complemento
             if ui.operacion.text()[parentesis2 + 3] == "'":
                 conj1 = ui.operacion.text()[parentesis2 + 2] + "'"
-                conjunto = conjunto.union(dic.get(conj1))
+                conjunto = conjunto.intersection(dic.get(conj1))
             else:
                 conj1 = ui.operacion.text()[parentesis2 + 2]
                 conjunto = conjunto.intersection(dic.get(conj1))
@@ -132,7 +132,7 @@ def resultado():
             # Si es un complemento
             if ui.operacion.text()[parentesis2 + 3] == "'":
                 conj1 = ui.operacion.text()[parentesis2 + 2] + "'"
-                conjunto = conjunto.union(dic.get(conj1))
+                conjunto = conjunto.difference(dic.get(conj1))
             else:
                 conj1 = ui.operacion.text()[parentesis2 + 2]
                 conjunto = conjunto.difference(dic.get(conj1))
