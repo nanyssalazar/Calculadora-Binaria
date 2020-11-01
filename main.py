@@ -42,12 +42,65 @@ def complemento():
         dic.get(conj).add(i)
     print(dic.get(conj))
 
+# CHECAR OPERACIONES CON COMPLEMENTOS (QUE SI DEN)
+def op_parentesis(string):
+    conjunto = set()
+    parentesis1 = string.index("(")
+    parentesis2 = string.index(")")
+    conj1 = string[parentesis1 + 1]
+    conj2 = string[parentesis2 - 1]
+    # si el primer conjunto es complemento
+    if string[parentesis1 + 2] == "'":
+        conj1 = conj1 + "'"
+        # recorremos la posicion del parentesis ( porque ahora la operacion estará un indice despues
+        parentesis1 += 1
+    # si el conjunto es complemento cambia el objeto
+    if conj2 == "'":
+        conj2 = string[parentesis2 - 2] + "'"
+    if string[parentesis1 + 2] == "∪":
+        # se remplaza la clave dentro de var conj que esta dentro del diccionario por el objeto que le corresponde
+        conjunto = dic.get(conj1).union(dic.get(conj2))
+        print(conjunto)
+    elif string[parentesis1 + 2] == '∩':
+        conjunto = dic.get(conj1).intersection(dic.get(conj2))
+        print(conjunto)
+    elif string[parentesis1 + 2] == '-':
+        conjunto = dic.get(conj1).difference(dic.get(conj2))
+        print(conjunto)
+    return conjunto
 
 def resultado():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     conjunto = set()  # tambien se puede usar = {} - esta linea se puede comentar pero marca amarillo
-    # Si se tiene una operación con parentesis
-    if "(" in ui.operacion.text():
+    # Si se tiene una operación con más de un par de parentesis
+    if ui.operacion.text().count("(") > 1:
+        # Se crean substrings de las dos operaciones a realizar
+        substring1 = ui.operacion.text()[0:5]
+        substring2 = ui.operacion.text()[6:]
+        x = op_parentesis(substring1)  # x y y se pueden quitar y llamar la función directo en las operaciones
+        y = op_parentesis(substring2)
+        # Se calculan los resultados de esas dos operaciones según la operación principal
+        # Si es una unión
+        if ui.operacion.text()[5] == '∪':
+            # se remplaza la clave dentro de var conj que esta dentro del
+            # diccionario por el objeto que le corresponde
+            conjunto = x.union(y)
+            print(conjunto)
+        # Si es una intersección
+        elif ui.operacion.text()[5] == '∩':
+            conjunto = x.intersection(y)
+            print(conjunto)
+        # Si es una resta
+        elif ui.operacion.text()[5] == '-':
+            conjunto = x.difference(y)
+            print(conjunto)
+        if len(conjunto) == 0:  # Si esta vacío
+            ui.resultado.setPlainText(ui.operacion.text() + " { }")
+        else:
+            ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
+
+    # Si es operación con un solo paréntesis
+    elif "(" in ui.operacion.text():
         # Encuentra los parentesis y devuelve el index
         parentesis1 = ui.operacion.text().index("(")
         parentesis2 = ui.operacion.text().index(")")
@@ -151,7 +204,7 @@ def resultado():
             conj1 = conj1 + "'"
             conjunto = dic.get(conj1)
             print(dic.get(conj1))
-        else:
+        else: # AQUI SE PODRÍA USAR LA OTRA FUNCIÓN SI QUITAMOS LOS PARENTESIS QUE SE USAN DENTRO DE ELLA PERO NO ESTOY SEGURA DE QUE FUNCIONE
             conj2 = ui.operacion.text()[2]
             # si el primer conjunto es complemento
             if ui.operacion.text()[1] == "'":
