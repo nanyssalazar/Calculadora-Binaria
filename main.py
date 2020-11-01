@@ -75,7 +75,7 @@ def resultado():
         if ui.operacion.text()[parentesis1 - 1] == '∪':
             # Si es un complemento
             if ui.operacion.text()[parentesis1 - 2] == "'":
-                conj1= ui.operacion.text()[parentesis1-3] + "'"
+                conj1 = ui.operacion.text()[parentesis1-3] + "'"
                 conjunto = conjunto.union(dic.get(conj1))
             # Si se unia con A con B o con C
             else:
@@ -202,60 +202,9 @@ def all_clear():
     ui.resultado.clear()
 
 
-def modo_conj():
+def modo(widget):
     all_clear()
-    ui.btn_not.setVisible(False)
-    ui.btn_and.setVisible(False)
-    ui.btn_or.setVisible(False)
-    ui.btn_relacional.setVisible(False)
-    ui.btn_birelaccional.setVisible(False)
-    ui.btn_equiv.setVisible(False)
-    ui.btn_q.setVisible(False)
-    ui.btn_p.setVisible(False)
-    ui.btn_r.setVisible(False)
-    ui.tabla.setVisible(False)
-    ui.btn_union.setVisible(True)
-    ui.btn_interseccion.setVisible(True)
-    # a es complemento
-    ui.btn_a.setVisible(True)
-    ui.btn_resta.setVisible(True)
-    ui.resultado.setVisible(True)
-    ui.conjA.setVisible(True)
-    ui.conjB.setVisible(True)
-    ui.conjC.setVisible(True)
-    ui.btn_universo.setVisible(True)
-    ui.universo.setVisible(True)
-    ui.btn_conjA.setVisible(True)
-    ui.btn_conjB.setVisible(True)
-    ui.btn_conjC.setVisible(True)
-
-
-def modo_prop():
-    all_clear()
-    ui.btn_not.setVisible(True)
-    ui.btn_and.setVisible(True)
-    ui.btn_or.setVisible(True)
-    ui.btn_relacional.setVisible(True)
-    ui.btn_birelaccional.setVisible(True)
-    ui.btn_equiv.setVisible(True)
-    ui.btn_q.setVisible(True)
-    ui.btn_p.setVisible(True)
-    ui.btn_r.setVisible(True)
-    ui.tabla.setVisible(True)
-    ui.btn_union.setVisible(False)
-    ui.btn_interseccion.setVisible(False)
-    # a es complemento
-    ui.btn_a.setVisible(False)
-    ui.btn_resta.setVisible(False)
-    ui.resultado.setVisible(False)
-    ui.conjA.setVisible(False)
-    ui.conjB.setVisible(False)
-    ui.conjC.setVisible(False)
-    ui.btn_universo.setVisible(False)
-    ui.universo.setVisible(False)
-    ui.btn_conjA.setVisible(False)
-    ui.btn_conjB.setVisible(False)
-    ui.btn_conjC.setVisible(False)
+    ui.stackedWidget.setCurrentWidget(widget)
 
 
 if __name__ == "__main__":
@@ -265,18 +214,6 @@ if __name__ == "__main__":
     main_window = QtWidgets.QMainWindow()
     ui = UI.Ui_MainWindow()
     ui.setupUi(main_window)
-
-    # Mostrar primera configuracion
-    ui.btn_not.setVisible(False)
-    ui.btn_and.setVisible(False)
-    ui.btn_or.setVisible(False)
-    ui.btn_relacional.setVisible(False)
-    ui.btn_birelaccional.setVisible(False)
-    ui.btn_equiv.setVisible(False)
-    ui.btn_q.setVisible(False)
-    ui.btn_p.setVisible(False)
-    ui.btn_r.setVisible(False)
-    ui.tabla.setVisible(False)
 
     # FUNCIONES
     ##############################################################################
@@ -290,10 +227,6 @@ if __name__ == "__main__":
     ui.btn_interseccion.clicked.connect(lambda: add_text('∩'))
     ui.btn_resta.clicked.connect(lambda: add_text('-'))
     ui.btn_a.clicked.connect(complemento)
-
-    ui.btn_del.clicked.connect(delete)
-    ui.btn_ac.clicked.connect(all_clear)
-    ui.btn_igual.clicked.connect(resultado)
 
     # PROPOSICIONES
     ui.btn_p.clicked.connect(lambda: add_text("p"))
@@ -311,8 +244,13 @@ if __name__ == "__main__":
     ui.btn_x.clicked.connect(lambda: add_text("x"))
 
     # OTRAS FUNCIONES
-    ui.btn_modConj.clicked.connect(modo_conj)
-    ui.btn_modProp.clicked.connect(modo_prop)
+    ui.btn_modConj.clicked.connect(lambda: modo(ui.conjuntos))
+    ui.btn_modProp.clicked.connect(lambda: modo(ui.proposiciones))
+
+    ui.btn_del.clicked.connect(delete)
+    ui.btn_ac.clicked.connect(all_clear)
+
+    ui.btn_igual.clicked.connect(resultado)
 
     ##############################################################################
 
