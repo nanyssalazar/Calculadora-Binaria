@@ -289,6 +289,11 @@ if __name__ == "__main__":
     main_window = QtWidgets.QMainWindow()
     ui = UI.Ui_MainWindow()
     ui.setupUi(main_window)
+    main_window.setFixedWidth(461)
+    main_window.setFixedHeight(553)
+
+
+
 
     # FUNCIONES
     ##############################################################################

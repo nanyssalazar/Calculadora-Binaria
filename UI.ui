@@ -41,31 +41,51 @@ font: 14pt &quot;Century Gothic&quot;;
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
-background-color: #A8B0C4;
+background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(143, 151, 174, 255), stop:1 rgba(157, 167, 189, 255));
 border-radius: 8px;
 color: #D9DDDC;
 font-weight: bold;
 color: white;
 }
+QPushButton:pressed {
+background-color:qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(151, 160, 183, 255), stop:1 rgba(163, 172, 196, 255))
+}
+
 QPushButton#btn_igual{
-background-color: #D1FBE1;
+background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(185, 235, 200, 255), stop:1 rgba(193, 236, 207, 255));
 color: black;
+}
+QPushButton#btn_igual:pressed{
+background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(185, 235, 200, 255), stop:1 rgba(197, 241, 211, 255));
 }
 QPushButton#btn_modConj{
-background-color: #E8EBFF;
+background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(199, 204, 237, 255), stop:1 rgba(216, 219, 240, 255));
 font-weight: normal;
 color: black;
+}
+QPushButton#btn_modConj:pressed{
+background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(199, 204, 237, 255), stop:1 rgba(216, 219, 240, 255));
 }
 QPushButton#btn_modProp{
-background-color: #E8EBFF;
+background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(199, 204, 237, 255), stop:1 rgba(216, 219, 240, 255));
 font-weight: normal;
 color: black;
 }
+QPushButton#btn_modProp:pressed{
+background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(199, 204, 237, 255), stop:1 rgba(216, 219, 240, 255));
+}
+
 QPushButton#btn_del{
-background-color: #3D5666;
+background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(41, 59, 72, 255), stop:1 rgba(50, 62, 74, 255));
+}
+QPushButton#btn_del:pressed{
+background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(41, 59, 71, 255), stop:1 rgba(50, 62, 74, 255));
 }
 QPushButton#btn_ac{
-background-color: #3D5666;
+background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(41, 59, 72, 255), stop:1 rgba(50, 62, 74, 255));
+}
+QPushButton#btn_ac:pressed{
+background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(41, 59, 71, 255), stop:1 rgba(50, 62, 74, 255));
 }
 
 QLineEdit{
@@ -372,7 +392,7 @@ border-radius: 8px;
        <item row="0" column="0" colspan="2">
         <widget class="QPlainTextEdit" name="resultado">
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">text-align: center;</string>
          </property>
          <property name="readOnly">
           <bool>true</bool>
