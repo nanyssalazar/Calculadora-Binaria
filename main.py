@@ -42,6 +42,7 @@ def complemento():
         dic.get(conj).add(i)
     print(dic.get(conj))
 
+
 # CHECAR OPERACIONES CON COMPLEMENTOS (QUE SI DEN)
 def op_parentesis(string):
     conjunto = set()
@@ -69,6 +70,7 @@ def op_parentesis(string):
         print(conjunto)
     return conjunto
 
+
 def resultado():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     conjunto = set()  # tambien se puede usar = {} - esta linea se puede comentar pero marca amarillo
@@ -94,19 +96,17 @@ def resultado():
         elif ui.operacion.text()[5] == '-':
             conjunto = x.difference(y)
             print(conjunto)
-        if len(conjunto) == 0:  # Si esta vacío
-            ui.resultado.setPlainText(ui.operacion.text() + " { }")
-        else:
-            ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
     # Si es operación con un solo paréntesis
     elif "(" in ui.operacion.text():
-        # Encuentra los parentesis y devuelve el index
+        # Los pongo aquí aunque ya esten dentro de la función porque si no no los reconoce,
+        # para quitar esto se pueden poner globales en la funcion op_parentesis (parentesis1, parentesis2)
         parentesis1 = ui.operacion.text().index("(")
         parentesis2 = ui.operacion.text().index(")")
-        conj1 = ui.operacion.text()[parentesis1 + 1]
-        conj2 = ui.operacion.text()[parentesis2 - 1]
-        # si el primer conjunto es complemento
+        conjunto = op_parentesis(ui.operacion.text())  # Lo asignamos a una variable (se puede poner directo)
+
+        # ESTE ES EL CODIGO QUE SE ELIMINA USANDO LA FUNCIÓN
+        ''' si el primer conjunto es complemento
         if ui.operacion.text()[parentesis1 + 2] == "'":
             conj1 = conj1 + "'"
             # recorremos la posicion del parentesis ( porque ahora la operacion estará un indice despues
@@ -123,7 +123,8 @@ def resultado():
             print(conjunto)
         elif ui.operacion.text()[parentesis1 + 2] == '-':
             conjunto = dic.get(conj1).difference(dic.get(conj2))
-            print(conjunto)
+            print(conjunto) '''
+
         # Si antes del parentesis esta la otra operación y es una unión
         if ui.operacion.text()[parentesis1 - 1] == '∪':
             # Si es un complemento
@@ -190,11 +191,6 @@ def resultado():
                 conj1 = ui.operacion.text()[parentesis2 + 2]
                 conjunto = conjunto.difference(dic.get(conj1))
             print(conjunto)
-        # Pone el resultado final
-        if len(conjunto) == 0:  # Si esta vacío
-            ui.resultado.setPlainText(ui.operacion.text() + " { }")
-        else:
-            ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
     # Si son operaciones sin parentesis
     else:
@@ -204,7 +200,7 @@ def resultado():
             conj1 = conj1 + "'"
             conjunto = dic.get(conj1)
             print(dic.get(conj1))
-        else: # AQUI SE PODRÍA USAR LA OTRA FUNCIÓN SI QUITAMOS LOS PARENTESIS QUE SE USAN DENTRO DE ELLA PERO NO ESTOY SEGURA DE QUE FUNCIONE
+        else:
             conj2 = ui.operacion.text()[2]
             # si el primer conjunto es complemento
             if ui.operacion.text()[1] == "'":
@@ -227,10 +223,11 @@ def resultado():
             elif '-' in ui.operacion.text():
                 conjunto = dic.get(conj1).difference(dic.get(conj2))
                 print(conjunto)
-        if len(conjunto) == 0:  # Si esta vacío
-            ui.resultado.setPlainText(ui.operacion.text() + " { }")
-        else:
-            ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
+    # Muestra el resultado
+    if len(conjunto) == 0:  # Si esta vacío
+        ui.resultado.setPlainText(ui.operacion.text() + " { }")
+    else:
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
 
 
 def delete():
