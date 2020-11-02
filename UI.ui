@@ -23,7 +23,7 @@
    <string>Calculadora Binaria</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #1D2226;
+   <string notr="true">background-color: #002030;
 font: 14pt &quot;Century Gothic&quot;;
 
 
@@ -41,44 +41,43 @@ font: 14pt &quot;Century Gothic&quot;;
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
-background-color: #5A7E85;
+background-color: #A8B0C4;
 border-radius: 8px;
 color: #D9DDDC;
 font-weight: bold;
+color: white;
 }
 QPushButton#btn_igual{
-background-color: #8BA629;
+background-color: #D1FBE1;
+color: black;
 }
 QPushButton#btn_modConj{
-background-color: #86898E;
+background-color: #E8EBFF;
 font-weight: normal;
+color: black;
 }
 QPushButton#btn_modProp{
-background-color: #86898E;
+background-color: #E8EBFF;
 font-weight: normal;
+color: black;
 }
 QPushButton#btn_del{
-background-color: #9ABBCE;
+background-color: #3D5666;
 }
 QPushButton#btn_ac{
-background-color: #9ABBCE;
+background-color: #3D5666;
 }
-QPushButton#btn_mo{
-background-color: #9ABBCE;
-}
-QPushButton#btn_ac{
-background-color: #9ABBCE;
-}
+
 QLineEdit{
-background-color: #D9DDDC;
+background-color: #F2F3F5;
 border-radius: 8px;
 }
 QPlainTextEdit{
-background-color: #D9DDDC;
+background-color:#F2F3F5;
 border-radius: 8px;
 }
 QTableWidget{
-background-color: #D9DDDC;
+background-color: #F2F3F5;
 border-radius: 8px;
 }</string>
    </property>
