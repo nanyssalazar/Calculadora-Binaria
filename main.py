@@ -100,7 +100,7 @@ def resultado():
         return 0
     # Si a la operacion le hace falta un parentesis
     if (ui.operacion.text().count("(") + ui.operacion.text().count(")")) % 2 != 0:
-        ui.resultado.setPlainText("Invalid Operation")
+        ui.resultado.setPlainText("Operación Inválida")
         return 0
     # Si se tiene una operación con más de un par de parentesis
     try:
@@ -218,13 +218,15 @@ def resultado():
         else:
             ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
     except Exception:
-        ui.resultado.setPlainText("Operación Invalida")
+        ui.resultado.setPlainText("Operación Inválida")
+        ui.operacion.clear()
 
 
 def delete():
-    string = ui.operacion.text()
-    string = string[:-1]
-    ui.operacion.setText(string)
+    #string = ui.operacion.text()
+    #string = string[:-1]
+    ui.operacion.setText(ui.operacion.text()[:-1])
+    ui.resultado.clear()
 
 
 def all_clear():
