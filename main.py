@@ -42,6 +42,11 @@ def complemento():
         dic.get(conj).add(i)
     print(dic.get(conj))
 
+def parentesis():
+    if (ui.operacion.text().count("(") + ui.operacion.text().count(")")) % 2 == 0:
+        add_text("(")
+    else:
+        add_text(")")
 
 # CHECAR OPERACIONES CON COMPLEMENTOS (QUE SI DEN)
 def op_parentesis(string):
@@ -74,26 +79,33 @@ def op_parentesis(string):
 def resultado():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     conjunto = set()  # tambien se puede usar = {} - esta linea se puede comentar pero marca amarillo
+    #Si a la operacion le hace falta un parentesis
+    if (ui.operacion.text().count("(") + ui.operacion.text().count(")")) % 2 != 0:
+        ui.resultado.setPlainText("Invalid Operation")
+        return 0
     # Si se tiene una operación con más de un par de parentesis
     if ui.operacion.text().count("(") > 1:
+        #si en los primeros indices encuentra ' se recorren las posiciones
+        count = ui.operacion.text()[1:6].count("'")
         # Se crean substrings de las dos operaciones a realizar
-        substring1 = ui.operacion.text()[0:5]
-        substring2 = ui.operacion.text()[6:]
+        substring1 = ui.operacion.text()[0:5+count]
+        print(count)
+        substring2 = ui.operacion.text()[6+count:]
         x = op_parentesis(substring1)  # x y y se pueden quitar y llamar la función directo en las operaciones
         y = op_parentesis(substring2)
         # Se calculan los resultados de esas dos operaciones según la operación principal
         # Si es una unión
-        if ui.operacion.text()[5] == '∪':
+        if ui.operacion.text()[5+count] == '∪':
             # se remplaza la clave dentro de var conj que esta dentro del
             # diccionario por el objeto que le corresponde
             conjunto = x.union(y)
             print(conjunto)
         # Si es una intersección
-        elif ui.operacion.text()[5] == '∩':
+        elif ui.operacion.text()[5+count] == '∩':
             conjunto = x.intersection(y)
             print(conjunto)
         # Si es una resta
-        elif ui.operacion.text()[5] == '-':
+        elif ui.operacion.text()[5+count] == '-':
             conjunto = x.difference(y)
             print(conjunto)
 
@@ -273,6 +285,7 @@ if __name__ == "__main__":
     ui.btn_conjB.clicked.connect(lambda: crear_conjunto(ui.conjB.text(), setB, 'B'))
     ui.btn_conjC.clicked.connect(lambda: crear_conjunto(ui.conjC.text(), setC, 'C'))
 
+    ui.btn_parentesis.clicked.connect(parentesis)
     ui.btn_union.clicked.connect(lambda: add_text('∪'))
     ui.btn_interseccion.clicked.connect(lambda: add_text('∩'))
     ui.btn_resta.clicked.connect(lambda: add_text('-'))

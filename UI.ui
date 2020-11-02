@@ -360,7 +360,7 @@ border-radius: 8px;
      </widget>
     </widget>
     <widget class="QWidget" name="conjuntos">
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -481,7 +481,7 @@ border-radius: 8px;
           <number>10</number>
          </property>
          <item row="0" column="0">
-          <widget class="QPushButton" name="btn_universo">
+          <widget class="QPushButton" name="btn_parentesis">
            <property name="minimumSize">
             <size>
              <width>75</width>
@@ -489,7 +489,7 @@ border-radius: 8px;
             </size>
            </property>
            <property name="text">
-            <string>U</string>
+            <string>(     )</string>
            </property>
           </widget>
          </item>
