@@ -169,7 +169,7 @@ border-radius: 8px;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="proposiciones">
      <widget class="QWidget" name="layoutWidget">
@@ -187,8 +187,11 @@ border-radius: 8px;
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="btn_p">
+         <item row="0" column="3">
+          <widget class="QPushButton" name="btn_relacional">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -196,7 +199,23 @@ border-radius: 8px;
             </size>
            </property>
            <property name="text">
-            <string>p</string>
+            <string>→</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QPushButton" name="btn_birelaccional">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>↔</string>
            </property>
           </widget>
          </item>
@@ -232,8 +251,21 @@ border-radius: 8px;
            </property>
           </widget>
          </item>
-         <item row="0" column="3">
-          <widget class="QPushButton" name="btn_relacional">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="btn_p">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>p</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QPushButton" name="btn_par2">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -244,56 +276,11 @@ border-radius: 8px;
             </size>
            </property>
            <property name="text">
-            <string>→</string>
+            <string>(     )</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="4">
-          <widget class="QPushButton" name="btn_birelaccional">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>↔</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QPushButton" name="btn_and">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>^</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QPushButton" name="btn_or">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>v</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
+         <item row="2" column="1">
           <widget class="QPushButton" name="btn_not">
            <property name="enabled">
             <bool>true</bool>
@@ -309,8 +296,8 @@ border-radius: 8px;
            </property>
           </widget>
          </item>
-         <item row="1" column="3">
-          <widget class="QPushButton" name="btn_x">
+         <item row="2" column="3">
+          <widget class="QPushButton" name="btn_or">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -321,11 +308,24 @@ border-radius: 8px;
             </size>
            </property>
            <property name="text">
-            <string>x</string>
+            <string>v</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="4">
+         <item row="2" column="2">
+          <widget class="QPushButton" name="btn_and">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>^</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
           <widget class="QPushButton" name="btn_equiv">
            <property name="enabled">
             <bool>true</bool>

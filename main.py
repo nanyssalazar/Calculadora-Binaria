@@ -260,7 +260,9 @@ if __name__ == "__main__":
     ui.setupUi(main_window)
     main_window.setFixedWidth(461)
     main_window.setFixedHeight(553)
+    ui.stackedWidget.setCurrentWidget(ui.conjuntos)
     ui.stackedWidget_2.setCurrentWidget(ui.mod_prop)
+
     # FUNCIONES
     ##############################################################################
 
@@ -288,7 +290,7 @@ if __name__ == "__main__":
     ui.btn_or.clicked.connect(lambda: add_text("v"))
     ui.btn_not.clicked.connect(lambda: add_text("¬"))
 
-    ui.btn_x.clicked.connect(lambda: add_text("x"))
+    ui.btn_par2.clicked.connect(parentesis)
 
     # OTRAS FUNCIONES
     ui.btn_modConj.clicked.connect(lambda: modo(ui.conjuntos, ui.mod_prop))
