@@ -245,9 +245,10 @@ def all_clear():
     ui.resultado.clear()
 
 
-def modo(widget):
+def modo(widget1, widget2):
     all_clear()
-    ui.stackedWidget.setCurrentWidget(widget)
+    ui.stackedWidget.setCurrentWidget(widget1)
+    ui.stackedWidget_2.setCurrentWidget(widget2)
 
 
 if __name__ == "__main__":
@@ -259,7 +260,7 @@ if __name__ == "__main__":
     ui.setupUi(main_window)
     main_window.setFixedWidth(461)
     main_window.setFixedHeight(553)
-
+    ui.stackedWidget_2.setCurrentWidget(ui.mod_prop)
     # FUNCIONES
     ##############################################################################
 
@@ -290,8 +291,8 @@ if __name__ == "__main__":
     ui.btn_x.clicked.connect(lambda: add_text("x"))
 
     # OTRAS FUNCIONES
-    ui.btn_modConj.clicked.connect(lambda: modo(ui.conjuntos))
-    ui.btn_modProp.clicked.connect(lambda: modo(ui.proposiciones))
+    ui.btn_modConj.clicked.connect(lambda: modo(ui.conjuntos, ui.mod_prop))
+    ui.btn_modProp.clicked.connect(lambda: modo(ui.proposiciones, ui.mod_conj))
 
     # BORRAR
     ui.btn_del.clicked.connect(delete)
