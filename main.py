@@ -97,12 +97,8 @@ def op_parentesis(string):
             print(conjunto)
         # Producto Cartesiano
         elif string[op] == 'x':
-            if len(dic.get(conj1)) != len(dic.get(conj2)):
-                ui.resultado.setPlainText("Operación inválida")
-                return 0
-            else:
-                conjunto = set(product(dic.get(conj1), dic.get(conj2)))
-                print(conjunto)
+            conjunto = set(product(dic.get(conj1), dic.get(conj2)))
+            print(conjunto)
     return conjunto
 
 
@@ -174,12 +170,6 @@ def resultado():
 
             # Si antes del parentesis esta la otra operación y es una intersección
             elif ui.operacion.text()[parentesis1 - 1] == '∩':
-                # tratar al conjunto como si fuera otro parentesis para evitar todas los ifs de abajo
-                # conj1 = op_parentesis(ui.operacion.text()[:parentesis1-1])
-                #  CHECAR
-                # estas lineas marcar error "unhashable" creo que es porque el conjunto va a salir vacio?
-                # conjunto = conjunto.intersection(dic.get(conj1))
-                # Si es un complemento
                 if ui.operacion.text()[parentesis1 - 2] == "'":
                     conj1 = ui.operacion.text()[parentesis1 - 3] + "'"
                     conjunto = conjunto.intersection(dic.get(conj1))
