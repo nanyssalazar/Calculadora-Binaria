@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets
 import UI
+import itertools
+
 
 setA = set()
 setB = set()
@@ -92,6 +94,13 @@ def op_parentesis(string):
 def resultado():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     conjunto = set()
+    if "x" in ui.operacion.text():
+        conj1 = ui.operacion.text()[0]
+        conj2 = ui.operacion.text()[2]
+        conjunto = list(itertools.product(dic.get(conj1), dic.get(conj2)))
+        print(conjunto)
+        ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
+        return 0
     # Si no dio click en los botones, entonces no se crea el conjunto y se le notifica
     if ('A' in ui.operacion.text() and len(setA) == 0) or ('B' in ui.operacion.text() and len(setB) == 0) or \
             ('C' in ui.operacion.text() and len(setC) == 0) or ("'" in ui.operacion.text() and len(setU) == 0):
@@ -275,6 +284,7 @@ if __name__ == "__main__":
     ui.btn_union.clicked.connect(lambda: add_text('∪'))
     ui.btn_interseccion.clicked.connect(lambda: add_text('∩'))
     ui.btn_resta.clicked.connect(lambda: add_text('-'))
+    ui.btn_producto.clicked.connect(lambda: add_text('x'))
     ui.btn_a.clicked.connect(complemento)
 
     # PROPOSICIONES
