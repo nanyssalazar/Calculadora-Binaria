@@ -31,18 +31,25 @@ def add_text(char):
 def complemento():
     # Crear conjunto Universo
     crear_conjunto(str(ui.universo.text()), setU)
-    # Encontrar conjunto por complementar
-    conj = ui.operacion.text()[-1]
-    # Agregar '
-    ui.operacion.setText(ui.operacion.text() + "'")
-    # Encontrar diferencia con U
-    comp = setU.difference(dic.get(conj))
-    # Cambiar conjunto a complemento del conjunto x --> x'
-    conj = conj + "'"
-    # Agregar los elementos al complemento correspondiente
-    for i in comp:
-        dic.get(conj).add(i)
-    print(dic.get(conj))
+    try:
+        # Encontrar conjunto por complementar
+        conj = ui.operacion.text()[-1]
+        if conj not in "ABC":
+            all_clear()
+            ui.resultado.setPlainText("Operacion Inválida")
+            return 0
+        # Agregar '
+        ui.operacion.setText(ui.operacion.text() + "'")
+        # Encontrar diferencia con U
+        comp = setU.difference(dic.get(conj))
+        # Cambiar conjunto a complemento del conjunto x --> x'
+        conj = conj + "'"
+        # Agregar los elementos al complemento correspondiente
+        for i in comp:
+            dic.get(conj).add(i)
+        print(dic.get(conj))
+    except Exception:
+        return 0
 
 
 def parentesis():
@@ -88,7 +95,17 @@ def op_parentesis(string):
         elif string[op] == '-':
             conjunto = dic.get(conj1).difference(dic.get(conj2))
             print(conjunto)
+        # Producto Cartesiano
+        elif string[op] == 'x':
+            if len(dic.get(conj1)) != len(dic.get(conj2)):
+                ui.resultado.setPlainText("Operación inválida")
+                return 0
+            else:
+                conjunto = set(product(dic.get(conj1), dic.get(conj2)))
+                print(conjunto)
     return conjunto
+
+
 
 
 def resultado():
@@ -97,19 +114,17 @@ def resultado():
     # Si no dio click en los botones, entonces no se crea el conjunto y se le notifica
     if ('A' in ui.operacion.text() and len(setA) == 0) or ('B' in ui.operacion.text() and len(setB) == 0) or \
             ('C' in ui.operacion.text() and len(setC) == 0) or ("'" in ui.operacion.text() and len(setU) == 0):
-        ui.resultado.setPlainText("Introduce la operación dando click en los botones.")
         ui.operacion.clear()
-        return 0
-    # Producto Cartesiano
-    if "x" in ui.operacion.text():
-        conjunto = set(product(dic.get(ui.operacion.text()[0]), dic.get(ui.operacion.text()[2])))
-        print(conjunto)
-        ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
         return 0
     # Si a la operacion le hace falta un parentesis
     if (ui.operacion.text().count("(") + ui.operacion.text().count(")")) % 2 != 0:
         ui.resultado.setPlainText("Operación Inválida")
         return 0
+    #Si se intenta calcular más de un producto cartesiano
+    if ui.operacion.text().count("x") > 1:
+        ui.resultado.setPlainText("Operación Inválida")
+        return 0
+
     # Si se tiene una operación con más de un par de parentesis
     try:
         if ui.operacion.text().count("(") > 1:
