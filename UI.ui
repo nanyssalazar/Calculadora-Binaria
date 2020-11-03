@@ -347,16 +347,16 @@ border-radius: 8px;
      </widget>
     </widget>
     <widget class="QWidget" name="conjuntos">
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>10</y>
+        <x>21</x>
+        <y>11</y>
         <width>421</width>
         <height>331</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_3">
+      <layout class="QGridLayout" name="gridLayout_5">
        <item row="0" column="0" colspan="2">
         <widget class="QPlainTextEdit" name="resultado">
          <property name="styleSheet">
@@ -377,11 +377,8 @@ border-radius: 8px;
         </widget>
        </item>
        <item row="1" column="0">
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <property name="spacing">
-          <number>10</number>
-         </property>
-         <item>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
           <widget class="QLineEdit" name="universo">
            <property name="minimumSize">
             <size>
@@ -400,7 +397,7 @@ border-radius: 8px;
            </property>
           </widget>
          </item>
-         <item>
+         <item row="1" column="0">
           <widget class="QLineEdit" name="conjA">
            <property name="minimumSize">
             <size>
@@ -419,7 +416,7 @@ border-radius: 8px;
            </property>
           </widget>
          </item>
-         <item>
+         <item row="2" column="0">
           <widget class="QLineEdit" name="conjB">
            <property name="minimumSize">
             <size>
@@ -438,7 +435,7 @@ border-radius: 8px;
            </property>
           </widget>
          </item>
-         <item>
+         <item row="3" column="0">
           <widget class="QLineEdit" name="conjC">
            <property name="minimumSize">
             <size>
@@ -460,14 +457,109 @@ border-radius: 8px;
         </layout>
        </item>
        <item row="1" column="1">
-        <layout class="QGridLayout" name="gridLayout">
-         <property name="horizontalSpacing">
-          <number>7</number>
-         </property>
-         <property name="verticalSpacing">
-          <number>10</number>
-         </property>
-         <item row="5" column="0">
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="btn_parentesis">
+             <property name="minimumSize">
+              <size>
+               <width>10</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>( )</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="btn_a">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Ā</string>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="btn_union">
+           <property name="minimumSize">
+            <size>
+             <width>75</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>∪</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QPushButton" name="btn_conjA">
+           <property name="minimumSize">
+            <size>
+             <width>75</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>A</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QPushButton" name="btn_interseccion">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>∩</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QPushButton" name="btn_conjB">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>B</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPushButton" name="btn_resta">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
           <widget class="QPushButton" name="btn_conjC">
            <property name="minimumSize">
             <size>
@@ -483,104 +575,7 @@ border-radius: 8px;
            </property>
           </widget>
          </item>
-         <item row="5" column="2">
-          <widget class="QPushButton" name="btn_resta">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>-</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QPushButton" name="btn_interseccion">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>∩</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="2">
-          <widget class="QPushButton" name="btn_a">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Ā</string>
-           </property>
-           <property name="default">
-            <bool>false</bool>
-           </property>
-           <property name="flat">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QPushButton" name="btn_conjA">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>A</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QPushButton" name="btn_conjB">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>B</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QPushButton" name="btn_union">
-           <property name="minimumSize">
-            <size>
-             <width>75</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>∪</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QPushButton" name="btn_parentesis">
-           <property name="minimumSize">
-            <size>
-             <width>75</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>(     )</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="2">
+         <item row="3" column="1">
           <widget class="QPushButton" name="btn_producto">
            <property name="minimumSize">
             <size>
@@ -609,7 +604,7 @@ border-radius: 8px;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="mod_conj">
      <widget class="QPushButton" name="btn_modConj">
