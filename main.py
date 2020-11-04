@@ -102,8 +102,6 @@ def op_parentesis(string):
     return conjunto
 
 
-
-
 def resultado():
     ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     conjunto = set()
@@ -116,7 +114,7 @@ def resultado():
     if (ui.operacion.text().count("(") + ui.operacion.text().count(")")) % 2 != 0:
         ui.resultado.setPlainText("Operación Inválida")
         return 0
-    #Si se intenta calcular más de un producto cartesiano
+    # Si se intenta calcular más de un producto cartesiano
     if ui.operacion.text().count("x") > 1:
         ui.resultado.setPlainText("Operación Inválida")
         return 0
@@ -236,8 +234,6 @@ def resultado():
 
 
 def delete():
-    #string = ui.operacion.text()
-    #string = string[:-1]
     ui.operacion.setText(ui.operacion.text()[:-1])
     ui.resultado.clear()
 
@@ -256,12 +252,26 @@ def all_clear():
     ui.conjC.clear()
     ui.universo.clear()
     ui.resultado.clear()
+    ui.tabla.setRowCount(1)
+    ui.tabla.setColumnCount(0)
 
 
 def modo(widget1, widget2):
     all_clear()
     ui.stackedWidget.setCurrentWidget(widget1)
     ui.stackedWidget_2.setCurrentWidget(widget2)
+
+
+# PROPOSICIONES
+def add_cells(pressed_btn):
+    # si ya se encuentra la proposición
+    if pressed_btn in ui.operacion.text():
+        pass
+    else:
+        ui.tabla.setRowCount(ui.tabla.rowCount() * 2)
+        ui.tabla.setColumnCount(ui.tabla.columnCount() + 1)
+
+    add_text(pressed_btn)
 
 
 if __name__ == "__main__":
@@ -292,9 +302,9 @@ if __name__ == "__main__":
     ui.btn_a.clicked.connect(complemento)
 
     # PROPOSICIONES
-    ui.btn_p.clicked.connect(lambda: add_text("p"))
-    ui.btn_q.clicked.connect(lambda: add_text("q"))
-    ui.btn_r.clicked.connect(lambda: add_text("r"))
+    ui.btn_p.clicked.connect(lambda: add_cells("p"))
+    ui.btn_q.clicked.connect(lambda: add_cells("q"))
+    ui.btn_r.clicked.connect(lambda: add_cells("r"))
 
     ui.btn_equiv.clicked.connect(lambda: add_text("≡"))
     ui.btn_birelaccional.clicked.connect(lambda: add_text("↔"))
@@ -309,6 +319,7 @@ if __name__ == "__main__":
     # OTRAS FUNCIONES
     ui.btn_modConj.clicked.connect(lambda: modo(ui.conjuntos, ui.mod_prop))
     ui.btn_modProp.clicked.connect(lambda: modo(ui.proposiciones, ui.mod_conj))
+    ui.tabla.horizontalHeader().show()
 
     # BORRAR
     ui.btn_del.clicked.connect(delete)
