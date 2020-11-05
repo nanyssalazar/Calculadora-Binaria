@@ -266,11 +266,49 @@ def modo(widget1, widget2):
 
 # PROPOSICIONES
 prop_symbols = {'¬': '~', 'v': '|', '^': '&', '→': '>>'}
+global values, sorted_values, rows, variables, sorted_variables, expr_truth_value, expr_string
+
+
+def tf_values():
+    global values, sorted_values, rows, variables, sorted_variables, expr_truth_value, expr_string
+
+    # genera valores de verdad y almacena en arreglos
+    try:
+        expr = sympify(expr_string)
+        variables = sorted(expr.free_symbols, key=default_sort_key)
+
+        rows = 0
+        sorted_values = []
+        expr_truth_value = []
+        for truth_values in cartes([True, False], repeat=len(variables)):
+            values = dict(zip(variables, truth_values))
+            sorted_values.append(sorted(values.items(), key=default_sort_key))
+            expr_truth_value.append(expr.subs(values))
+            rows += 1
+
+    except (SympifyError, AttributeError):
+        ui.tabla.setColumnCount(1)
+        ui.tabla.setRowCount(1)
+        ui.tabla.horizontalHeader().hide()
+        ui.tabla.setItem(0, 0, QTableWidgetItem("Operación invalida"))
+        return
+
+
+def bicondicional():
+    global expr_string
+
+    if '↔' in expr_string:
+        index = expr_string.index('↔')
+        substring = expr_string[:index]
+        supstring = expr_string[index + 1:]
+        expr_string = "(" + "(" + substring + ")" + ">>" + "(" + supstring + ")" + ")" + \
+                      "&" + "(" + "(" + substring + ")" + "<<" + "(" + supstring + ")" + ")"
 
 
 def resultado_tablas():
+    global expr_string
+
     if ui.mod_conj.isVisible():
-        values = 0
         ui.tabla.horizontalHeader().show()
         expr_string = ui.operacion.text()
 
@@ -278,34 +316,8 @@ def resultado_tablas():
         for symbol, replacement in prop_symbols.items():
             expr_string = expr_string.replace(symbol, replacement)
 
-        # bicondicional
-        if '↔' in expr_string:
-            index = expr_string.index('↔')
-            substring = expr_string[:index]
-            supstring = expr_string[index+1:]
-            expr_string = "(" + "(" + substring + ")" + ">>" + "(" + supstring + ")" + ")" + \
-                          "&" + "(" + "(" + substring + ")" + "<<" + "(" + supstring + ")" + ")"
-
-        # genera valores de verdad y almacena en arreglos
-        try:
-            expr = sympify(expr_string)
-            variables = sorted(expr.free_symbols, key=default_sort_key)
-
-            rows = 0
-            sorted_values = []
-            expr_truth_value = []
-            for truth_values in cartes([True, False], repeat=len(variables)):
-                values = dict(zip(variables, truth_values))
-                sorted_values.append(sorted(values.items(), key=default_sort_key))
-                expr_truth_value.append(expr.subs(values))
-                rows += 1
-
-        except (SympifyError, AttributeError):
-            ui.tabla.setColumnCount(1)
-            ui.tabla.setRowCount(1)
-            ui.tabla.horizontalHeader().hide()
-            ui.tabla.setItem(0, 0, QTableWidgetItem("Operación invalida"))
-            return
+        bicondicional()
+        tf_values()
 
         # determina el tamaño de columnas
         ui.tabla.setColumnCount(len(values) + 1)
