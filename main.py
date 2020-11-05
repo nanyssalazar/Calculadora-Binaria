@@ -265,7 +265,7 @@ def modo(widget1, widget2):
 
 
 # PROPOSICIONES
-prop_dic = {'¬': '~', 'v': '|', '^': '&'}
+prop_dic = {'¬': '~', 'v': '|', '^': '&', '→': '>>'}
 
 
 def resultado_tablas():
