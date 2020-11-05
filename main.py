@@ -105,133 +105,134 @@ def op_parentesis(string):
 
 
 def resultado():
-    conjunto = set()
-    # Si no dio click en los botones, entonces no se crea el conjunto y se le notifica
-    if ('A' in ui.operacion.text() and len(setA) == 0) or ('B' in ui.operacion.text() and len(setB) == 0) or \
-            ('C' in ui.operacion.text() and len(setC) == 0) or ("'" in ui.operacion.text() and len(setU) == 0):
-        ui.operacion.clear()
-        return 0
-    # Si a la operacion le hace falta un parentesis
-    if (ui.operacion.text().count("(") + ui.operacion.text().count(")")) % 2 != 0:
-        ui.resultado.setPlainText("Operación Inválida")
-        return 0
-    # Si se intenta calcular más de un producto cartesiano
-    if ui.operacion.text().count("x") > 1:
-        ui.resultado.setPlainText("Operación Inválida")
-        return 0
+    if ui.mod_prop.isVisible():
+        conjunto = set()
+        # Si no dio click en los botones, entonces no se crea el conjunto y se le notifica
+        if ('A' in ui.operacion.text() and len(setA) == 0) or ('B' in ui.operacion.text() and len(setB) == 0) or \
+                ('C' in ui.operacion.text() and len(setC) == 0) or ("'" in ui.operacion.text() and len(setU) == 0):
+            ui.operacion.clear()
+            return 0
+        # Si a la operacion le hace falta un parentesis
+        if (ui.operacion.text().count("(") + ui.operacion.text().count(")")) % 2 != 0:
+            ui.resultado.setPlainText("Operación Inválida")
+            return 0
+        # Si se intenta calcular más de un producto cartesiano
+        if ui.operacion.text().count("x") > 1:
+            ui.resultado.setPlainText("Operación Inválida")
+            return 0
 
-    # Si se tiene una operación con más de un par de parentesis
-    try:
-        if ui.operacion.text().count("(") > 1:
-            # si en los primeros indices encuentra ' se recorren las posiciones
-            count = ui.operacion.text()[1:6].count("'")
-            # Se crean substrings de las dos operaciones a realizar
-            substring1 = ui.operacion.text()[1:4 + count]
-            print(count)
-            substring2 = ui.operacion.text()[7 + count:-2]
-            x = op_parentesis(substring1)  # x y y se pueden quitar y llamar la función directo en las operaciones
-            y = op_parentesis(substring2)
-            # Se calculan los resultados de esas dos operaciones según la operación principal
-            # Si es una unión
-            if ui.operacion.text()[5 + count] == '∪':
-                # se remplaza la clave dentro de var conj que esta dentro del
-                # diccionario por el objeto que le corresponde
-                conjunto = x.union(y)
-                print(conjunto)
-            # Si es una intersección
-            elif ui.operacion.text()[5 + count] == '∩':
-                conjunto = x.intersection(y)
-                print(conjunto)
-            # Si es una resta
-            elif ui.operacion.text()[5 + count] == '-':
-                conjunto = x.difference(y)
-                print(conjunto)
+        # Si se tiene una operación con más de un par de parentesis
+        try:
+            if ui.operacion.text().count("(") > 1:
+                # si en los primeros indices encuentra ' se recorren las posiciones
+                count = ui.operacion.text()[1:6].count("'")
+                # Se crean substrings de las dos operaciones a realizar
+                substring1 = ui.operacion.text()[1:4 + count]
+                print(count)
+                substring2 = ui.operacion.text()[7 + count:-2]
+                x = op_parentesis(substring1)  # x y y se pueden quitar y llamar la función directo en las operaciones
+                y = op_parentesis(substring2)
+                # Se calculan los resultados de esas dos operaciones según la operación principal
+                # Si es una unión
+                if ui.operacion.text()[5 + count] == '∪':
+                    # se remplaza la clave dentro de var conj que esta dentro del
+                    # diccionario por el objeto que le corresponde
+                    conjunto = x.union(y)
+                    print(conjunto)
+                # Si es una intersección
+                elif ui.operacion.text()[5 + count] == '∩':
+                    conjunto = x.intersection(y)
+                    print(conjunto)
+                # Si es una resta
+                elif ui.operacion.text()[5 + count] == '-':
+                    conjunto = x.difference(y)
+                    print(conjunto)
 
-        # Si es operación con un solo paréntesis
-        elif "(" in ui.operacion.text():
-            # Los pongo aquí aunque ya esten dentro de la función porque si no no los reconoce,
-            # para quitar esto se pueden poner globales en la funcion op_parentesis (parentesis1, parentesis2)
-            parentesis1 = ui.operacion.text().index("(")
-            parentesis2 = ui.operacion.text().index(")")
-            # Lo asignamos a una variable (se puede poner directo)
-            conjunto = op_parentesis(ui.operacion.text()[parentesis1 + 1:parentesis2])
-            # Si antes del parentesis esta la otra operación y es una unión
-            if ui.operacion.text()[parentesis1 - 1] == '∪':
-                # Si es un complemento
-                if ui.operacion.text()[parentesis1 - 2] == "'":
-                    conj1 = ui.operacion.text()[parentesis1 - 3] + "'"
-                    conjunto = conjunto.union(dic.get(conj1))
-                # Si se unia con A con B o con C
-                else:
-                    conj1 = ui.operacion.text()[parentesis1 - 2]
-                    conjunto = conjunto.union(dic.get(conj1))
-                print(conjunto)
+            # Si es operación con un solo paréntesis
+            elif "(" in ui.operacion.text():
+                # Los pongo aquí aunque ya esten dentro de la función porque si no no los reconoce,
+                # para quitar esto se pueden poner globales en la funcion op_parentesis (parentesis1, parentesis2)
+                parentesis1 = ui.operacion.text().index("(")
+                parentesis2 = ui.operacion.text().index(")")
+                # Lo asignamos a una variable (se puede poner directo)
+                conjunto = op_parentesis(ui.operacion.text()[parentesis1 + 1:parentesis2])
+                # Si antes del parentesis esta la otra operación y es una unión
+                if ui.operacion.text()[parentesis1 - 1] == '∪':
+                    # Si es un complemento
+                    if ui.operacion.text()[parentesis1 - 2] == "'":
+                        conj1 = ui.operacion.text()[parentesis1 - 3] + "'"
+                        conjunto = conjunto.union(dic.get(conj1))
+                    # Si se unia con A con B o con C
+                    else:
+                        conj1 = ui.operacion.text()[parentesis1 - 2]
+                        conjunto = conjunto.union(dic.get(conj1))
+                    print(conjunto)
 
-            # Si antes del parentesis esta la otra operación y es una intersección
-            elif ui.operacion.text()[parentesis1 - 1] == '∩':
-                if ui.operacion.text()[parentesis1 - 2] == "'":
-                    conj1 = ui.operacion.text()[parentesis1 - 3] + "'"
-                    conjunto = conjunto.intersection(dic.get(conj1))
-                else:
-                    conj1 = ui.operacion.text()[parentesis1 - 2]
-                    conjunto = conjunto.intersection(dic.get(conj1))
-                print(conjunto)
+                # Si antes del parentesis esta la otra operación y es una intersección
+                elif ui.operacion.text()[parentesis1 - 1] == '∩':
+                    if ui.operacion.text()[parentesis1 - 2] == "'":
+                        conj1 = ui.operacion.text()[parentesis1 - 3] + "'"
+                        conjunto = conjunto.intersection(dic.get(conj1))
+                    else:
+                        conj1 = ui.operacion.text()[parentesis1 - 2]
+                        conjunto = conjunto.intersection(dic.get(conj1))
+                    print(conjunto)
 
-            # Si antes del parentesis esta la otra operación y es una resta
-            elif ui.operacion.text()[parentesis1 - 1] == '-':
-                # Si es un complemento
-                if ui.operacion.text()[parentesis1 - 2] == "'":
-                    conj1 = ui.operacion.text()[parentesis1 - 3] + "'"
-                    conjunto = conjunto.difference(dic.get(conj1))
-                else:
-                    conj1 = ui.operacion.text()[parentesis1 - 2]
-                    conjunto = conjunto.difference(dic.get(conj1))
-                print(conjunto)
+                # Si antes del parentesis esta la otra operación y es una resta
+                elif ui.operacion.text()[parentesis1 - 1] == '-':
+                    # Si es un complemento
+                    if ui.operacion.text()[parentesis1 - 2] == "'":
+                        conj1 = ui.operacion.text()[parentesis1 - 3] + "'"
+                        conjunto = conjunto.difference(dic.get(conj1))
+                    else:
+                        conj1 = ui.operacion.text()[parentesis1 - 2]
+                        conjunto = conjunto.difference(dic.get(conj1))
+                    print(conjunto)
 
-            # Si despues del parentesis esta la otra operación y es una unión
-            elif ui.operacion.text()[parentesis2 + 1] == '∪':
-                # Si es un complemento
-                if ui.operacion.text()[parentesis2 + 3] == "'":
-                    conj1 = ui.operacion.text()[parentesis2 + 2] + "'"
-                    conjunto = conjunto.union(dic.get(conj1))
-                else:
-                    conj1 = ui.operacion.text()[parentesis2 + 2]
-                    print(conj1)
-                    conjunto = conjunto.union(dic.get(conj1))
-                print(conjunto)
+                # Si despues del parentesis esta la otra operación y es una unión
+                elif ui.operacion.text()[parentesis2 + 1] == '∪':
+                    # Si es un complemento
+                    if ui.operacion.text()[parentesis2 + 3] == "'":
+                        conj1 = ui.operacion.text()[parentesis2 + 2] + "'"
+                        conjunto = conjunto.union(dic.get(conj1))
+                    else:
+                        conj1 = ui.operacion.text()[parentesis2 + 2]
+                        print(conj1)
+                        conjunto = conjunto.union(dic.get(conj1))
+                    print(conjunto)
 
-            # Si despues del parentesis esta la otra operación y es una intersección
-            elif ui.operacion.text()[parentesis2 + 1] == '∩':
-                # Si es un complemento
-                if ui.operacion.text()[parentesis2 + 3] == "'":
-                    conj1 = ui.operacion.text()[parentesis2 + 2] + "'"
-                    conjunto = conjunto.intersection(dic.get(conj1))
-                else:
-                    conj1 = ui.operacion.text()[parentesis2 + 2]
-                    conjunto = conjunto.intersection(dic.get(conj1))
-                print(conjunto)
-            # Si despues del parentesis esta la otra operación y es una resta
-            elif ui.operacion.text()[parentesis2 + 1] == '-':
-                # Si es un complemento
-                if ui.operacion.text()[parentesis2 + 3] == "'":
-                    conj1 = ui.operacion.text()[parentesis2 + 2] + "'"
-                    conjunto = conjunto.difference(dic.get(conj1))
-                else:
-                    conj1 = ui.operacion.text()[parentesis2 + 2]
-                    conjunto = conjunto.difference(dic.get(conj1))
-                print(conjunto)
-        # Si son operaciones sin parentesis
-        else:
-            # calcular solo el complemento de un conjunto esta dentro de la funcion
-            conjunto = op_parentesis(ui.operacion.text().replace("=", ""))
-        # Muestra el resultado
-        if len(conjunto) == 0:  # Si esta vacío
-            ui.resultado.setPlainText(ui.operacion.text() + " { }")
-        else:
-            ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
-    except Exception:
-        ui.resultado.setPlainText("Operación Inválida")
-        ui.operacion.clear()
+                # Si despues del parentesis esta la otra operación y es una intersección
+                elif ui.operacion.text()[parentesis2 + 1] == '∩':
+                    # Si es un complemento
+                    if ui.operacion.text()[parentesis2 + 3] == "'":
+                        conj1 = ui.operacion.text()[parentesis2 + 2] + "'"
+                        conjunto = conjunto.intersection(dic.get(conj1))
+                    else:
+                        conj1 = ui.operacion.text()[parentesis2 + 2]
+                        conjunto = conjunto.intersection(dic.get(conj1))
+                    print(conjunto)
+                # Si despues del parentesis esta la otra operación y es una resta
+                elif ui.operacion.text()[parentesis2 + 1] == '-':
+                    # Si es un complemento
+                    if ui.operacion.text()[parentesis2 + 3] == "'":
+                        conj1 = ui.operacion.text()[parentesis2 + 2] + "'"
+                        conjunto = conjunto.difference(dic.get(conj1))
+                    else:
+                        conj1 = ui.operacion.text()[parentesis2 + 2]
+                        conjunto = conjunto.difference(dic.get(conj1))
+                    print(conjunto)
+            # Si son operaciones sin parentesis
+            else:
+                # calcular solo el complemento de un conjunto esta dentro de la funcion
+                conjunto = op_parentesis(ui.operacion.text().replace("=", ""))
+            # Muestra el resultado
+            if len(conjunto) == 0:  # Si esta vacío
+                ui.resultado.setPlainText(ui.operacion.text() + " { }")
+            else:
+                ui.resultado.setPlainText(ui.operacion.text() + " " + str(conjunto))
+        except Exception:
+            ui.resultado.setPlainText("Operación Inválida")
+            ui.operacion.clear()
 
 
 def delete():
@@ -269,8 +270,8 @@ prop_dic = {'¬': '~', 'v': '|', '^': '&'}
 
 def resultado_tablas():
     if ui.mod_conj.isVisible():
-        ui.tabla.horizontalHeader().show()
         values = 0
+        ui.tabla.horizontalHeader().show()
         expr_string = ui.operacion.text()
 
         for symbol, replacement in prop_dic.items():
@@ -278,13 +279,12 @@ def resultado_tablas():
 
         try:
             expr = sympify(expr_string)
-
             variables = sorted(expr.free_symbols, key=default_sort_key)
 
             rows = 0
             sorted_values = []
             expr_truth_value = []
-            for truth_values in cartes([False, True], repeat=len(variables)):
+            for truth_values in cartes([True, False], repeat=len(variables)):
                 values = dict(zip(variables, truth_values))
                 sorted_values.append(sorted(values.items(), key=default_sort_key))
                 expr_truth_value.append(expr.subs(values))
@@ -297,16 +297,20 @@ def resultado_tablas():
             ui.tabla.setItem(0, 0, QTableWidgetItem("Operación invalida"))
             return
 
+        # determina el tamaño de columnas
         ui.tabla.setColumnCount(len(values) + 1)
         ui.tabla.setRowCount(rows)
 
+        # pone encabezados en columnas
         column = 0
         for variable in variables:
             ui.tabla.setHorizontalHeaderItem(column, QTableWidgetItem(str(variable)))
             column += 1
 
+        # pone la operacion en el encabezado de la ultima columna
         ui.tabla.setHorizontalHeaderItem(column, QTableWidgetItem(ui.operacion.text()))
 
+        # llena la tabla
         row = 0
         for value in sorted_values:
             for column in range(0, len(value)):
@@ -314,6 +318,7 @@ def resultado_tablas():
             ui.tabla.setItem(row, len(value), QTableWidgetItem(str(expr_truth_value[row])))
             row += 1
 
+        # ajusta el tamaño de la tabla
         for column in range(0, ui.tabla.columnCount()):
             ui.tabla.setColumnWidth(column, int(ui.tabla.width() / ui.tabla.columnCount()))
 
