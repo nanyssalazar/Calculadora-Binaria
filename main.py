@@ -1,6 +1,8 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
+from PyQt5.QtWidgets import QTableWidgetItem
 import UI
 from itertools import product
+from sympy import *
 
 
 setA = set()
@@ -103,7 +105,6 @@ def op_parentesis(string):
 
 
 def resultado():
-    ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
     conjunto = set()
     # Si no dio click en los botones, entonces no se crea el conjunto y se le notifica
     if ('A' in ui.operacion.text() and len(setA) == 0) or ('B' in ui.operacion.text() and len(setB) == 0) or \
@@ -263,15 +264,58 @@ def modo(widget1, widget2):
 
 
 # PROPOSICIONES
-def add_cells(pressed_btn):
-    # si ya se encuentra la proposición
-    if pressed_btn in ui.operacion.text():
-        pass
-    else:
-        ui.tabla.setRowCount(ui.tabla.rowCount() * 2)
-        ui.tabla.setColumnCount(ui.tabla.columnCount() + 1)
+prop_dic = {'¬': '~', 'v': '|', '^': '&'}
 
-    add_text(pressed_btn)
+
+def resultado_tablas():
+    if ui.mod_conj.isVisible():
+        ui.tabla.horizontalHeader().show()
+        values = 0
+        expr_string = ui.operacion.text()
+
+        for symbol, replacement in prop_dic.items():
+            expr_string = expr_string.replace(symbol, replacement)
+
+        try:
+            expr = sympify(expr_string)
+
+            variables = sorted(expr.free_symbols, key=default_sort_key)
+
+            rows = 0
+            sorted_values = []
+            expr_truth_value = []
+            for truth_values in cartes([False, True], repeat=len(variables)):
+                values = dict(zip(variables, truth_values))
+                sorted_values.append(sorted(values.items(), key=default_sort_key))
+                expr_truth_value.append(expr.subs(values))
+                rows += 1
+
+        except (SympifyError, AttributeError):
+            ui.tabla.setColumnCount(1)
+            ui.tabla.setRowCount(1)
+            ui.tabla.horizontalHeader().hide()
+            ui.tabla.setItem(0, 0, QTableWidgetItem("Operación invalida"))
+            return
+
+        ui.tabla.setColumnCount(len(values) + 1)
+        ui.tabla.setRowCount(rows)
+
+        column = 0
+        for variable in variables:
+            ui.tabla.setHorizontalHeaderItem(column, QTableWidgetItem(str(variable)))
+            column += 1
+
+        ui.tabla.setHorizontalHeaderItem(column, QTableWidgetItem(ui.operacion.text()))
+
+        row = 0
+        for value in sorted_values:
+            for column in range(0, len(value)):
+                ui.tabla.setItem(row, column, QTableWidgetItem(str(value[column][1])))
+            ui.tabla.setItem(row, len(value), QTableWidgetItem(str(expr_truth_value[row])))
+            row += 1
+
+        for column in range(0, ui.tabla.columnCount()):
+            ui.tabla.setColumnWidth(column, int(ui.tabla.width() / ui.tabla.columnCount()))
 
 
 if __name__ == "__main__":
@@ -302,9 +346,9 @@ if __name__ == "__main__":
     ui.btn_a.clicked.connect(complemento)
 
     # PROPOSICIONES
-    ui.btn_p.clicked.connect(lambda: add_cells("p"))
-    ui.btn_q.clicked.connect(lambda: add_cells("q"))
-    ui.btn_r.clicked.connect(lambda: add_cells("r"))
+    ui.btn_p.clicked.connect(lambda: add_text("p"))
+    ui.btn_q.clicked.connect(lambda: add_text("q"))
+    ui.btn_r.clicked.connect(lambda: add_text("r"))
 
     ui.btn_equiv.clicked.connect(lambda: add_text("≡"))
     ui.btn_birelaccional.clicked.connect(lambda: add_text("↔"))
@@ -320,6 +364,7 @@ if __name__ == "__main__":
     ui.btn_modConj.clicked.connect(lambda: modo(ui.conjuntos, ui.mod_prop))
     ui.btn_modProp.clicked.connect(lambda: modo(ui.proposiciones, ui.mod_conj))
     ui.tabla.horizontalHeader().show()
+    main_window.setWindowIcon(QtGui.QIcon('icon.png'))
 
     # BORRAR
     ui.btn_del.clicked.connect(delete)
@@ -327,6 +372,7 @@ if __name__ == "__main__":
 
     # RESULTADO
     ui.btn_igual.clicked.connect(resultado)
+    ui.btn_igual.clicked.connect(resultado_tablas)
 
     ##############################################################################
 
