@@ -277,6 +277,19 @@ def resultado_tablas():
         for symbol, replacement in prop_dic.items():
             expr_string = expr_string.replace(symbol, replacement)
 
+        # bicondicional
+        index = 0
+        for char in expr_string:
+            if char == '↔':
+                substring = expr_string[:index]
+                supstring = expr_string[index+1:]
+                expr_string = "(" + "(" + substring + ")" + ">>" + "(" + supstring + ")" + ")" + \
+                              "&" + "(" + "(" + substring + ")" + "<<" + "(" + supstring + ")" + ")"
+                print(expr_string)
+                break
+            index += 1
+
+        # genera valores de verdad y almacena en arreglos
         try:
             expr = sympify(expr_string)
             variables = sorted(expr.free_symbols, key=default_sort_key)
