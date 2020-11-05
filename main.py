@@ -265,7 +265,7 @@ def modo(widget1, widget2):
 
 
 # PROPOSICIONES
-prop_dic = {'¬': '~', 'v': '|', '^': '&', '→': '>>'}
+prop_symbols = {'¬': '~', 'v': '|', '^': '&', '→': '>>'}
 
 
 def resultado_tablas():
@@ -274,7 +274,8 @@ def resultado_tablas():
         ui.tabla.horizontalHeader().show()
         expr_string = ui.operacion.text()
 
-        for symbol, replacement in prop_dic.items():
+        # reemplaza simbolos para que la expresión pueda ser leida por sympy
+        for symbol, replacement in prop_symbols.items():
             expr_string = expr_string.replace(symbol, replacement)
 
         # bicondicional
