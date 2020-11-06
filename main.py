@@ -274,23 +274,19 @@ def tf_values(expr_string):
     global values, rows, variables, sorted_variables
 
     # genera valores de verdad y almacena en arreglos
-    try:
-        expr = sympify(expr_string)
-        variables = sorted(expr.free_symbols, key=default_sort_key)
+    expr = sympify(expr_string)
+    variables = sorted(expr.free_symbols, key=default_sort_key)
 
-        rows = 0
-        sorted_values = []
-        expr_truth_value = []
-        for truth_values in cartes([True, False], repeat=len(variables)):
-            values = dict(zip(variables, truth_values))
-            sorted_values.append(sorted(values.items(), key=default_sort_key))
-            expr_truth_value.append(expr.subs(values))
-            rows += 1
-    except (SympifyError, AttributeError):
-        table_msg("Operación invalida")
-        return
-    else:
-        return sorted_values, expr_truth_value
+    rows = 0
+    sorted_values = []
+    expr_truth_value = []
+    for truth_values in cartes([True, False], repeat=len(variables)):
+        values = dict(zip(variables, truth_values))
+        sorted_values.append(sorted(values.items(), key=default_sort_key))
+        expr_truth_value.append(expr.subs(values))
+        rows += 1
+
+    return sorted_values, expr_truth_value
 
 
 def bicondicional_format(expr_string):
@@ -305,8 +301,13 @@ def is_equivalent(expr_string):
     split_str = expr_string.split('≡')
     split_str[0] = bicondicional_format(split_str[0])
     split_str[1] = bicondicional_format(split_str[1])
-    tf_table_1, expr_truth_values1 = tf_values(split_str[0])
-    tf_table_2, expr_truth_values2 = tf_values(split_str[1])
+
+    try:
+        tf_table_1, expr_truth_values1 = tf_values(split_str[0])
+        tf_table_2, expr_truth_values2 = tf_values(split_str[1])
+    except SympifyError:
+        table_msg("Operación invalida")
+        return
 
     ui.tabla.setColumnCount(3)
     ui.tabla.setRowCount(rows)
@@ -339,9 +340,15 @@ def resultado_tablas():
             is_equivalent(expr_string)
             return
 
-        # busca bicondicionales y genera valores de verdad
+        # busca bicondicional
         expr_string = bicondicional_format(expr_string)
-        sorted_values, expr_truth_value = tf_values(expr_string)
+
+        # genera valores de verdad
+        try:
+            sorted_values, expr_truth_value = tf_values(expr_string)
+        except SympifyError:
+            table_msg("Operación invalida")
+            return
 
         # determina la cantidad de columnas
         ui.tabla.setColumnCount(len(values) + 1)
