@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtWidgets import QTableWidgetItem
 import UI
-from itertools import product
+import itertools
 from sympy import *
 
 
@@ -69,7 +69,6 @@ def op_parentesis(string):
     # op es el index de la operacion
     op = 1
     conj1 = string[0]
-
     # Para calcular el complemento de un solo conjunto sin otra operacion
     if len(string) == 2 and string[1] == "'":
         conj1 = conj1 + "'"
@@ -99,7 +98,7 @@ def op_parentesis(string):
             print(conjunto)
         # Producto Cartesiano
         elif string[op] == 'x':
-            conjunto = set(product(dic.get(conj1), dic.get(conj2)))
+            conjunto = set(itertools.product(dic.get(conj1), dic.get(conj2)))
             print(conjunto)
     return conjunto
 
