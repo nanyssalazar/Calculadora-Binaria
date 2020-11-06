@@ -106,6 +106,7 @@ def op_parentesis(string):
 
 def resultado():
     if ui.mod_prop.isVisible():
+        ui.operacion.setText(ui.operacion.text() + ui.btn_igual.text())
         conjunto = set()
         # Si no dio click en los botones, entonces no se crea el conjunto y se le notifica
         if ('A' in ui.operacion.text() and len(setA) == 0) or ('B' in ui.operacion.text() and len(setB) == 0) or \
