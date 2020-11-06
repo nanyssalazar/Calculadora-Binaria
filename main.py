@@ -265,6 +265,7 @@ def modo(widget1, widget2):
 
 
 # PROPOSICIONES
+##############################################################################
 prop_symbols = {'¬': '~', 'v': '|', '^': '&', '→': '>>'}
 global values, rows, variables, sorted_variables
 
@@ -306,10 +307,22 @@ def is_equivalent(expr_string):
     split_str[1] = bicondicional_format(split_str[1])
     tf_table_1, expr_truth_values1 = tf_values(split_str[0])
     tf_table_2, expr_truth_values2 = tf_values(split_str[1])
+
+    ui.tabla.setColumnCount(3)
+    ui.tabla.setRowCount(rows)
+    split_op = ui.operacion.text().split('≡')
+    ui.tabla.setHorizontalHeaderItem(0, QTableWidgetItem(split_op[0]))
+    ui.tabla.setHorizontalHeaderItem(1, QTableWidgetItem(split_op[1]))
+    ui.tabla.setHorizontalHeaderItem(2, QTableWidgetItem("Equivalente:"))
+
+    for row in range(rows):
+        ui.tabla.setItem(row, 0, QTableWidgetItem(str(expr_truth_values1[row])))
+        ui.tabla.setItem(row, 1, QTableWidgetItem(str(expr_truth_values2[row])))
+
     if expr_truth_values1 == expr_truth_values2:
-        return True
+        ui.tabla.setItem(0, 2, QTableWidgetItem("True"))
     else:
-        return False
+        ui.tabla.setItem(0, 2, QTableWidgetItem("False"))
 
 
 def resultado_tablas():
@@ -323,18 +336,14 @@ def resultado_tablas():
 
         # busca equivalencia
         if '≡' in expr_string:
-            if is_equivalent(expr_string):
-                table_msg("True")
-                return
-            else:
-                table_msg("False")
-                return
+            is_equivalent(expr_string)
+            return
 
         # busca bicondicionales y genera valores de verdad
         expr_string = bicondicional_format(expr_string)
         sorted_values, expr_truth_value = tf_values(expr_string)
 
-        # determina el tamaño de columnas
+        # determina la cantidad de columnas
         ui.tabla.setColumnCount(len(values) + 1)
         ui.tabla.setRowCount(rows)
 
