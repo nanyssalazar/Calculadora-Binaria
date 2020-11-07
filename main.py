@@ -432,7 +432,7 @@ if __name__ == "__main__":
     ui.btn_modConj.clicked.connect(lambda: modo(ui.conjuntos, ui.mod_prop))
     ui.btn_modProp.clicked.connect(lambda: modo(ui.proposiciones, ui.mod_conj))
     ui.tabla.horizontalHeader().show()
-    main_window.setWindowIcon(QtGui.QIcon('icon.ico'))
+    main_window.setWindowIcon(QtGui.QIcon('Recursos/icon.ico'))
 
     # BORRAR
     ui.btn_del.clicked.connect(delete)
