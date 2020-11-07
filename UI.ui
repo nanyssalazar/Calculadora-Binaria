@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Andrea Sosa, Tere Rico, Oscar Lastra, Humberto Cabrera</author>
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="enabled">
@@ -10,7 +11,7 @@
     <x>0</x>
     <y>0</y>
     <width>461</width>
-    <height>553</height>
+    <height>564</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -692,6 +693,32 @@ border-radius: 8px;
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QLabel" name="version">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>535</y>
+      <width>25</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>7</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 7pt &quot;Century Gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>v1.0</string>
+    </property>
    </widget>
   </widget>
  </widget>

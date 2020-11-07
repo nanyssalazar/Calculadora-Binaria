@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(461, 553)
+        MainWindow.resize(461, 564)
         MainWindow.setMaximumSize(QtCore.QSize(16777215, 16777215))
         MainWindow.setStyleSheet("background-color: #002030;\n"
 "font: 14pt \"Century Gothic\";\n"
@@ -288,6 +288,18 @@ class Ui_MainWindow(object):
         self.btn_modProp.setStyleSheet("")
         self.btn_modProp.setObjectName("btn_modProp")
         self.stackedWidget_2.addWidget(self.mod_prop)
+        self.version = QtWidgets.QLabel(self.centralwidget)
+        self.version.setGeometry(QtCore.QRect(410, 535, 25, 17))
+        font = QtGui.QFont()
+        font.setFamily("Century Gothic")
+        font.setPointSize(7)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.version.setFont(font)
+        self.version.setStyleSheet("color: rgb(255, 255, 255);\n"
+"font: 7pt \"Century Gothic\";")
+        self.version.setObjectName("version")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -328,4 +340,4 @@ class Ui_MainWindow(object):
         self.btn_producto.setText(_translate("MainWindow", "x"))
         self.btn_modConj.setText(_translate("MainWindow", "Modo Conjuntos"))
         self.btn_modProp.setText(_translate("MainWindow", "Modo Proposiciones"))
-
+        self.version.setText(_translate("MainWindow", "v1.0"))
