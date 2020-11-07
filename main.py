@@ -328,6 +328,8 @@ def is_equivalent(expr_string):
 
 def resultado_tablas():
     if ui.mod_conj.isVisible():
+        stylesheet = "::section{Background-color:rgb(250,250,250)}"
+        ui.tabla.horizontalHeader().setStyleSheet(stylesheet)
         ui.tabla.horizontalHeader().show()
         expr_string = ui.operacion.text()
 
