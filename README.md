@@ -73,4 +73,4 @@ Al finalizar de ingresar la operación, es necesario dar click en el botón de =
 ### Sympy
 [SymPy](https://www.sympy.org/en/index.html) is a Python library for symbolic mathematics. It aims to become a full-featured computer algebra system (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible. SymPy is written entirely in Python.
 
-<br>Copyright © 2019 Andrea Sosa, Teresa Rico, Oscar Lastra & Humberto Cabrera - Released under the [MIT license.](https://github.com/nanyssalazar/Calculadora-Binaria/blob/master/LICENSE)
+<br>Copyright © 2020 Andrea Sosa, Teresa Rico, Oscar Lastra & Humberto Cabrera - Released under the [MIT license.](https://github.com/nanyssalazar/Calculadora-Binaria/blob/master/LICENSE)
