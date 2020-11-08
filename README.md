@@ -2,6 +2,11 @@
 Calculador de matemáticas discretas, conjuntos y proposiciones para la clase de Matemáticas para computación.
 <hr>
 
+## Descarga
+<a href="https://github.com/nanyssalazar/Calculadora-Binaria/releases/download/v1.0/Calculadora.Binaria.MacOS.zip"><img src= "https://i.imgur.com/nPiDJN9.png" alt="MacOS"></a>
+&emsp;
+<a href="https://github.com/nanyssalazar/Calculadora-Binaria/releases/download/v1.0/Calculadora.Binaria.Windows.Installer.exe"><img src= "https://i.imgur.com/NUE7Wep.png" alt="Windows"></a>
+
 ## Manual de usuario
 Esta calculadora cuenta con dos modos: conjuntos y proposiciones.
 
@@ -60,5 +65,12 @@ Para realizar operaciones con paréntesis, es necesario dar click en el botón d
 Al finalizar de ingresar la operación, es necesario dar click en el botón de = para poder visualizar el resultado en la calculadora.
 <br> Si el resultado rebasa el tamaño de la tabla, se puede mover de izquierda a derecha y de arriba a abajo mediante el mouse.
 
+## Librerias utilizadas
+
+### PyQt5
+[PyQt5](https://pypi.org/project/PyQt5/) is a comprehensive set of Python bindings for Qt v5. It is implemented as more than 35 extension modules and enables Python to be used as an alternative application development language to C++ on all supported platforms including iOS and Android.
+
+### Sympy
+[SymPy](https://www.sympy.org/en/index.html) is a Python library for symbolic mathematics. It aims to become a full-featured computer algebra system (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible. SymPy is written entirely in Python.
 
 <br>Copyright © 2019 Andrea Sosa, Teresa Rico, Oscar Lastra & Humberto Cabrera - Released under the [MIT license.](https://github.com/nanyssalazar/Calculadora-Binaria/blob/master/LICENSE)
