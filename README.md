@@ -35,30 +35,30 @@ Para obtener una Diferencia de Conjuntos, se debe dar click en el botón corresp
 <br>●	Dar click en el botón de Complemento (Ā).
 ##### Producto Cartesiano
 Para obtener el Producto Cartesiano de dos Conjuntos, se debe dar click en el botón correspondiente x.
-<br>Operaciones con Paréntesis
-<br>Para realizar operaciones con paréntesis, es necesario dar click en el botón de paréntesis que se encuentra en la calculadora. Esta detectará si se trata de un paréntesis de <br>apertura o de cierre. Las operaciones a hacer dentro de estos se deben realizar siguiendo las instrucciones previas. 
-<br>Resultado
-<br>Al finalizar de ingresar la operación, es necesario dar click en el botón de = para poder visualizar el resultado en la calculadora.
-<br>Proposiciones
-<br>Para realizar operaciones con proposiciones, se deben cumplir la siguiente condición:
-<br>●	Si no se encuentra en el Modo Proposiciones, dar click en este.
-<br>Negación
-<br>Para obtener la Negación de una proposición, se debe dar click primero en el botón correspondiente ¬ y después en la letra de la proposición (p, q ó r).
-<br>Conjunción
-<br>Para obtener la Conjunción de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente ∧ y en la segunda proposición (p, q ó r).
-<br>Disyunción
-<br>Para obtener la Disyunción de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente ∨ y en la segunda proposición (p, q ó r).
-<br>Condicional
-<br>Para obtener la Condicional de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente → y en la segunda proposición (p, q ó r).
-<br>Bicondicional
-<br>Para obtener la Bicondicional de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente ↔ y en la segunda proposición (p, q ó r).
-<br>Equivalencia
-<br>Para obtener la Equivalencia de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente ≡ y en la segunda proposición (p, q ó r).
-<br>Operaciones con Paréntesis
-<br>Para realizar operaciones con paréntesis, es necesario dar click en el botón de paréntesis que se encuentra en la calculadora. Esta detectará si se trata de un paréntesis de apertura o de cierre. Las operaciones a hacer dentro de estos se deben realizar siguiendo las instrucciones previas. 
-<br>Resultado
-<br>Al finalizar de ingresar la operación, es necesario dar click en el botón de = para poder visualizar el resultado en la calculadora.
-<br>Si el resultado rebasa el tamaño de la tabla, se puede mover de izquierda a derecha y de arriba a abajo mediante el mouse.
+##### Operaciones con Paréntesis
+Para realizar operaciones con paréntesis, es necesario dar click en el botón de paréntesis que se encuentra en la calculadora. Esta detectará si se trata de un paréntesis de apertura o de cierre. Las operaciones a hacer dentro de estos se deben realizar siguiendo las instrucciones previas. 
+##### Resultado
+Al finalizar de ingresar la operación, es necesario dar click en el botón de = para poder visualizar el resultado en la calculadora.
+#### Proposiciones
+##### Para realizar operaciones con proposiciones, se deben cumplir la siguiente condición:
+●	Si no se encuentra en el Modo Proposiciones, dar click en este.
+##### Negación
+Para obtener la Negación de una proposición, se debe dar click primero en el botón correspondiente ¬ y después en la letra de la proposición (p, q ó r).
+##### Conjunción
+Para obtener la Conjunción de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente ∧ y en la segunda proposición (p, q ó r).
+##### Disyunción
+Para obtener la Disyunción de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente ∨ y en la segunda proposición (p, q ó r).
+##### Condicional
+Para obtener la Condicional de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente → y en la segunda proposición (p, q ó r).
+##### Bicondicional
+Para obtener la Bicondicional de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente ↔ y en la segunda proposición (p, q ó r).
+##### Equivalencia
+Para obtener la Equivalencia de dos proposiciones, se debe dar click en la primera proposición  (p, q ó r), el símbolo correspondiente ≡ y en la segunda proposición (p, q ó r).
+##### Operaciones con Paréntesis
+Para realizar operaciones con paréntesis, es necesario dar click en el botón de paréntesis que se encuentra en la calculadora. Esta detectará si se trata de un paréntesis de apertura o de cierre. Las operaciones a hacer dentro de estos se deben realizar siguiendo las instrucciones previas. 
+##### Resultado
+Al finalizar de ingresar la operación, es necesario dar click en el botón de = para poder visualizar el resultado en la calculadora.
+<br> Si el resultado rebasa el tamaño de la tabla, se puede mover de izquierda a derecha y de arriba a abajo mediante el mouse.
 
 
 <br>Copyright © 2019 Andrea Sosa, Teresa Rico, Oscar Lastra & Humberto Cabrera - Released under the [MIT license.](https://github.com/nanyssalazar/Calculadora-Binaria/blob/master/LICENSE)
